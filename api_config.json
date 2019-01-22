@@ -7,6 +7,7 @@
     {"name": "update", "enabled": true},
     {"name": "upgrade", "enabled": true},
     {"name": "service", "enabled": true},
-    {"name": "display", "enabled": true}
+    {"name": "display", "enabled": true},
+    {"name": "gpio", "enabled": true}
     ]
 }

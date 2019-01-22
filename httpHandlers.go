@@ -5,6 +5,7 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -194,6 +195,131 @@ func displayAction (w http.ResponseWriter, r *http.Request) {
 	outputs := Response{}
 	outputs.Namespace = string(r.URL.Path)
 	outputs.Message = "success"
+	outputs.Timestamp = time.Time(time.Now())
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+
+	if err := json.NewEncoder(w).Encode(outputs); err != nil {
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+		w.WriteHeader(http.StatusInternalServerError)
+		sendMetric(r.URL.Path,http.StatusInternalServerError, r.Method)
+		return
+	}
+	sendMetric(r.URL.Path,http.StatusOK, r.Method)
+}
+
+func gpioSwitch (w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	pin := vars["number"]
+
+	enabled, err := checkConfig("gpio")
+	if err != nil{
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+		w.WriteHeader(http.StatusNotFound)
+		sendMetric(r.URL.Path,http.StatusNotFound, r.Method)
+		return
+	}
+
+	if !enabled{
+		log.Printf("[WARN] %s : %s", r.URL.Path, "API function disabled")
+		w.WriteHeader(http.StatusBadRequest)
+		sendMetric(r.URL.Path,http.StatusBadRequest, r.Method)
+		return
+	}
+
+	if err := gpioToggle(pin); err != nil{
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+		w.WriteHeader(http.StatusInternalServerError)
+		sendMetric(r.URL.Path,http.StatusInternalServerError, r.Method)
+	}
+
+	outputs := Response{}
+	outputs.Message = "success"
+	outputs.Namespace = string(r.URL.Path)
+	outputs.Timestamp = time.Time(time.Now())
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+
+	if err := json.NewEncoder(w).Encode(outputs); err != nil {
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+		w.WriteHeader(http.StatusInternalServerError)
+		sendMetric(r.URL.Path,http.StatusInternalServerError, r.Method)
+		return
+	}
+	sendMetric(r.URL.Path,http.StatusOK, r.Method)
+}
+
+func gpioPullDown (w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	pin := vars["number"]
+
+	enabled, err := checkConfig("gpio")
+	if err != nil{
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+		w.WriteHeader(http.StatusNotFound)
+		sendMetric(r.URL.Path,http.StatusNotFound, r.Method)
+		return
+	}
+
+	if !enabled{
+		log.Printf("[WARN] %s : %s", r.URL.Path, "API function disabled")
+		w.WriteHeader(http.StatusBadRequest)
+		sendMetric(r.URL.Path,http.StatusBadRequest, r.Method)
+		return
+	}
+
+	pinState, err := gpioDown(pin)
+	if err != nil{
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+		w.WriteHeader(http.StatusInternalServerError)
+		sendMetric(r.URL.Path,http.StatusInternalServerError, r.Method)
+	}
+
+	outputs := Response{}
+	outputs.Message = strconv.Itoa(int(pinState)) //Returns the pin readout
+	outputs.Namespace = string(r.URL.Path)
+	outputs.Timestamp = time.Time(time.Now())
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+
+	if err := json.NewEncoder(w).Encode(outputs); err != nil {
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+		w.WriteHeader(http.StatusInternalServerError)
+		sendMetric(r.URL.Path,http.StatusInternalServerError, r.Method)
+		return
+	}
+	sendMetric(r.URL.Path,http.StatusOK, r.Method)
+}
+
+func gpioPullUp (w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	pin := vars["number"]
+
+	enabled, err := checkConfig("gpio")
+	if err != nil{
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+		w.WriteHeader(http.StatusNotFound)
+		sendMetric(r.URL.Path,http.StatusNotFound, r.Method)
+		return
+	}
+
+	if !enabled{
+		log.Printf("[WARN] %s : %s", r.URL.Path, "API function disabled")
+		w.WriteHeader(http.StatusBadRequest)
+		sendMetric(r.URL.Path,http.StatusBadRequest, r.Method)
+		return
+	}
+
+	pinState, err := gpioUp(pin)
+	if err != nil{
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+		w.WriteHeader(http.StatusInternalServerError)
+		sendMetric(r.URL.Path,http.StatusInternalServerError, r.Method)
+	}
+
+	outputs := Response{}
+	outputs.Message = strconv.Itoa(int(pinState)) //Returns the pin readout
+	outputs.Namespace = string(r.URL.Path)
 	outputs.Timestamp = time.Time(time.Now())
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")

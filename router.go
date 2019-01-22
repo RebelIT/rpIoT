@@ -15,6 +15,7 @@ func NewRouter() *mux.Router {
 	}
 
 	return router
+
 }
 
 var routes = Routes{
@@ -24,4 +25,7 @@ var routes = Routes{
 	Route{"systemUpdate", "POST", "/api/apt/{action}", yumAction},
 	Route{"serviceControl", "POST", "/api/service/{service}/{action}", serviceAction},
 	Route{"hdmiControl", "POST", "/api/display/{action}", displayAction},
+	Route{"pinControl", "POST", "/api/pullup/{number}", gpioPullUp},
+	Route{"pinControl", "POST", "/api/pulldown/{number}", gpioPullDown},
+	Route{"pinControl", "POST", "/api/toggle/{number}", gpioSwitch},
 }
