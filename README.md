@@ -7,7 +7,9 @@ configuration file before starting the service.  Used for integrating/controllin
 
 ## Deploying it (ansible):
 * You need a working GOLang environment setup
-* Update true/false values in the api_config.json for what endpoints you want enabled.
+* Update true/false values in the api_config.json for what endpoints you want enabled
+* Update http port number for the api to listen on
+* Update statsd host if you want statsd metrics to be emitted on api usage
 * Update variables in ansible_deploy.yml
    ```
     gopath: "/Users/rebelit/go"
@@ -30,7 +32,7 @@ Default endpoints:
 * GET /api/alive
     * health check of the API is running
 * POST /api/power/{reboot|shutdown}
-    * power control the rsaspberryPi
+    * power control the raspberryPi
 * POST /api/apt/{update|upgrade}
     * system package updates and installation
 * POST /api/service/{service name}/{start|stop|restart}
