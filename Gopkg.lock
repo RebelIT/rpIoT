@@ -26,6 +26,14 @@
   version = "v0.8.1"
 
 [[projects]]
+  digest = "1:f3a8fd592d6f5355c3a8817ec8552e3ba1fb616799d945c3e56b006e8a26f203"
+  name = "github.com/stianeikeland/go-rpio"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "d43a3ce8186d47f497a6785f997400a1b2f1fdc7"
+  version = "v4.4.0"
+
+[[projects]]
   digest = "1:38b469493eb173db9c03321d64adcad4c7991ea0a19b5edc5bdc094f0e8c7384"
   name = "gopkg.in/alexcesaro/statsd.v2"
   packages = ["."]
@@ -39,6 +47,7 @@
   input-imports = [
     "github.com/gorilla/mux",
     "github.com/pkg/errors",
+    "github.com/stianeikeland/go-rpio",
     "gopkg.in/alexcesaro/statsd.v2",
   ]
   solver-name = "gps-cdcl"
