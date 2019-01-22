@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-const CONFIG = "./api_config.json"
+const CONFIG = "/etc/api/api_config.json"
 
 func main(){
 	router := NewRouter()
