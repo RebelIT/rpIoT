@@ -39,7 +39,7 @@ func powerAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := command(string(action), []string{"-r" , "+1"}); err != nil{
+	if err := command(string(action), []string{"+1"}); err != nil{
 		log.Printf("[ERROR] %s : %s", r.URL.Path, err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -164,7 +164,7 @@ func displayAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := command(string("service"), []string{"vcgencmd", "display_power", newState}); err != nil{
+	if err := command(string("vcgencmd"), []string{"display_power", newState}); err != nil{
 		log.Printf("[ERROR] %s : %s", r.URL.Path, err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
