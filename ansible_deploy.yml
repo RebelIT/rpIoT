@@ -6,23 +6,34 @@
   vars:
     ansible_ssh_user: pi
     ansible_become: yes
+    gopath: "/Users/rebelit/go"
+    goroot: "/usr/local/opt/go/libexec"
 
   tasks:
   - name: Compile the application
-    command: "go build -o main ."
+    shell: "GOOS=linux GOARCH=arm go build -o main ."
+    environment:
+      GOPATH: "{{ gopath }}"
+      GOROOT: "{{ goroot }}"
     delegate_to: 127.0.0.1
 
   - name: Create folder
     file:
       path: "/etc/api/"
       state: directory
-      mode: 0755
+      mode: 0644
 
   - name: Copy executable
     copy:
       src: "main"
       dest: "/etc/api/main"
-    when: main.stat.exists
+      mode: a+x
+
+  - name: Copy Configuration
+    copy:
+      src: "api_config.json"
+      dest: "/etc/api/api_config.json"
+      mode: 0644
 
   - name: Copy Service Files
     copy:
