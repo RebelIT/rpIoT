@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/pkg/errors"
+	"github.com/stianeikeland/go-rpio"
 	"gopkg.in/alexcesaro/statsd.v2"
 	"io/ioutil"
 	"log"
@@ -112,4 +113,68 @@ func sendMetric(uri string, responseCode int, method string ){
 
 	client.Increment(measurement)
 	return
+}
+
+func strToUint8(number string)(uint8, error){
+	rawInt, err := strconv.Atoi(number) //convert the string number to int
+	if err != nil{
+		return 0, err
+	}
+	uInt := uint8(rawInt) //convert the int to uint8
+	return uInt, nil
+}
+
+func gpioToggle(number string) error{
+	pinNum, err := strToUint8(number)
+	if err != nil{
+		return err
+	}
+	if err := rpio.Open(); err != nil {
+		return err
+	}
+	defer rpio.Close()
+
+	pin := rpio.Pin(pinNum)
+
+	pin.Output()
+
+	pin.Toggle()
+
+	return nil
+}
+
+func gpioUp(number string) (pinState rpio.State, err error){
+	pinNum, err := strToUint8(number)
+	if err != nil{
+		return 0, err
+	}
+	if err := rpio.Open(); err != nil {
+		return 0, err
+	}
+	defer rpio.Close()
+
+	pin := rpio.Pin(pinNum)
+
+	pin.PullUp()
+	state := pin.Read()
+
+	return state, nil
+}
+
+func gpioDown(number string) (pinState rpio.State, err error){
+	pinNum, err := strToUint8(number)
+	if err != nil{
+		return 0, err
+	}
+	if err := rpio.Open(); err != nil {
+		return 0, err
+	}
+	defer rpio.Close()
+
+	pin := rpio.Pin(pinNum)
+
+	pin.PullDown()
+	state := pin.Read()
+
+	return state, nil
 }
