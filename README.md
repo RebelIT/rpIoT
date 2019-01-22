@@ -38,6 +38,22 @@ Default endpoints:
     * control local services remotely
 * add more as you need, or contact me/submit issue to add more. 
 
+
+#### What else can I do (outside of the default endpoints):
+###### Project: 
+DAK wall mounted digital calendar & digital magic mirror
+* Turn the HDMI display on and off (pi 3B+) - not tested on other models
+    * /api/display/{on|off}
+    
+###### Project: 
+Hard wired electronics control with GPIO pins
+* Control GPIO pins
+    * /api/pullup/{gpio pin #}
+        * returns the pin state readout in the json body `{"message":}`
+    * /api/pulldown/{gpio pin #}
+        * returns the pin state readout in the json body `{"message":}`
+    * /api/toggle/{gpio pin #}
+
 ---
 ### Notes:
 I set it up to check the config file before every API action. While it is less efficient to read the file every 
