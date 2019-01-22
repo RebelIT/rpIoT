@@ -43,16 +43,16 @@ Default endpoints:
 ###### Project: 
 DAK wall mounted digital calendar & digital magic mirror
 * Turn the HDMI display on and off (pi 3B+) - not tested on other models
-    * /api/display/{on|off}
+    * POST /api/display/{on|off}
     
 ###### Project: 
 Hard wired electronics control with GPIO pins
 * Control GPIO pins
-    * /api/pullup/{gpio pin #}
+    * POST /api/pullup/{gpio pin #}
         * returns the pin state readout in the json body `{"message":}`
-    * /api/pulldown/{gpio pin #}
+    * POST /api/pulldown/{gpio pin #}
         * returns the pin state readout in the json body `{"message":}`
-    * /api/toggle/{gpio pin #}
+    * POST /api/toggle/{gpio pin #}
 
 ---
 ### Notes:
