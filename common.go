@@ -5,8 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/pkg/errors"
+	"gopkg.in/alexcesaro/statsd.v2"
 	"io/ioutil"
+	"log"
+	"os"
 	"os/exec"
+	"strconv"
 )
 
 func command(cmdName string, args []string) error {
@@ -23,15 +27,9 @@ func command(cmdName string, args []string) error {
 }
 
 func checkConfig(function string)(value bool, err error){
-	c := Config{}
-	config, err := ioutil.ReadFile(CONFIG)
-	if err != nil {
+	c, err := readConfig()
+	if err != nil{
 		return false, err
-	}
-
-	if err := json.Unmarshal(config, &c); err != nil{
-		errorMsg := errors.New("unable to read Config file")
-		return false, errorMsg
 	}
 
 	for _, f := range c.Functions{
@@ -69,4 +67,49 @@ func validateServiceAction(action string) error{
 		return errors.New("service control "+action+" is invalid")
 	}
 	return nil
+}
+
+func readConfig()(Config, error){
+	c := Config{}
+	config, err := ioutil.ReadFile(CONFIG)
+	if err != nil {
+		return c, err
+	}
+
+	if err := json.Unmarshal(config, &c); err != nil{
+		errorMsg := errors.New("unable to read Config file")
+		return c, errorMsg
+	}
+	return c, nil
+}
+
+func sendMetric(uri string, responseCode int, method string ){
+	c, err := readConfig()
+	if err != nil{
+		log.Printf("[ERROR] metric : %s", err)
+		return
+	}
+	host, err := os.Hostname()
+	if err != nil{
+		host = "unknown"
+	}
+	measurement := host+"_web-api"
+	if c.Statsd_host == "" {
+		//no statsd host configured, log metric and move along...move along...
+		log.Printf("[INFO] metric : %s,uri_path=%s,response_code=%s,method=%s", measurement, uri,
+			strconv.Itoa(responseCode),method)
+		return
+	}
+
+	tags := statsd.Tags("uri_path", uri, "response_code", strconv.Itoa(responseCode), "method", method)
+	addrOpt := statsd.Address(c.Statsd_host)
+	fmtOpt := statsd.TagsFormat(statsd.InfluxDB)
+	client, err := statsd.New(addrOpt,fmtOpt,tags)
+	if err != nil {
+		log.Print(err)
+	}
+	defer client.Close()
+
+	client.Increment(measurement)
+	return
 }
