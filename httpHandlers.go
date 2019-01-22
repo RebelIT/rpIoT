@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"time"
 )
 
 //Namespace handlers
@@ -14,7 +13,6 @@ func getStatus (w http.ResponseWriter, r *http.Request){
 	resp := Response{}
 	resp.Namespace = r.URL.Path
 	resp.Message = "alive"
-	resp.Timestamp = time.Now()
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
@@ -53,7 +51,6 @@ func powerAction (w http.ResponseWriter, r *http.Request) {
 	outputs := Response{}
 	outputs.Namespace = string(r.URL.Path)
 	outputs.Message = "success"
-	outputs.Timestamp = time.Time(time.Now())
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
@@ -95,7 +92,6 @@ func yumAction (w http.ResponseWriter, r *http.Request) {
 	outputs := Response{}
 	outputs.Namespace = string(r.URL.Path)
 	outputs.Message = "success"
-	outputs.Timestamp = time.Time(time.Now())
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
@@ -145,7 +141,6 @@ func serviceAction (w http.ResponseWriter, r *http.Request) {
 	outputs := Response{}
 	outputs.Namespace = string(r.URL.Path)
 	outputs.Message = "success"
-	outputs.Timestamp = time.Time(time.Now())
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
@@ -195,7 +190,6 @@ func displayAction (w http.ResponseWriter, r *http.Request) {
 	outputs := Response{}
 	outputs.Namespace = string(r.URL.Path)
 	outputs.Message = "success"
-	outputs.Timestamp = time.Time(time.Now())
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
@@ -236,7 +230,6 @@ func gpioSwitch (w http.ResponseWriter, r *http.Request) {
 	outputs := Response{}
 	outputs.Message = "success"
 	outputs.Namespace = string(r.URL.Path)
-	outputs.Timestamp = time.Time(time.Now())
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
@@ -278,7 +271,6 @@ func gpioPullDown (w http.ResponseWriter, r *http.Request) {
 	outputs := Response{}
 	outputs.Message = strconv.Itoa(int(pinState)) //Returns the pin readout
 	outputs.Namespace = string(r.URL.Path)
-	outputs.Timestamp = time.Time(time.Now())
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
@@ -320,7 +312,6 @@ func gpioPullUp (w http.ResponseWriter, r *http.Request) {
 	outputs := Response{}
 	outputs.Message = strconv.Itoa(int(pinState)) //Returns the pin readout
 	outputs.Namespace = string(r.URL.Path)
-	outputs.Timestamp = time.Time(time.Now())
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
