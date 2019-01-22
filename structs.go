@@ -2,7 +2,6 @@ package main
 
 import (
 	"net/http"
-	"time"
 )
 
 //HTTP router
@@ -19,7 +18,6 @@ type Route struct {
 type Response struct{
 	Namespace	string		`json:"namespace"`
 	Message		string		`json:"message"`
-	Timestamp	time.Time	`json:"timestamp"`
 }
 
 //Config File functions toggle on/off
