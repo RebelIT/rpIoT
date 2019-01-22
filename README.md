@@ -23,7 +23,7 @@ configuration file before starting the service.  Used for integrating/controllin
 Hit the current default endpoints to test, add more for any other functions you need for your 
 devices. 
 
-TIP: If you do not have an API client, you can change these endpoints in the router.go to all GET's
+TIP: If you do not have an API client, you can change these endpoints in the httpHandlers.go to all GET's
 and hit them from a browser on your phone or tablet to perform the actions. 
 
 Default endpoints:
