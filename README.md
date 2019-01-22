@@ -20,7 +20,6 @@ configuration file before starting the service.  Used for integrating/controllin
     ansible-playbook ansible_deploy.yml -i ansible_host --ask-sudo-pass
     ```
     
-   
 ## Using it:
 Hit the current default endpoints to test, add more for any other functions you need for your 
 devices. 
@@ -39,3 +38,8 @@ Default endpoints:
     * control local services remotely
 * add more as you need, or contact me/submit issue to add more. 
 
+---
+### Notes:
+I set it up to check the config file before every API action. While it is less efficient to read the file every 
+time, it adds the flexibility to toggle endpoints on and off without having to restart the entire API service.
+ 
