@@ -1,0 +1,44 @@
+---
+- name: Deploying RaspberryPi Custom API
+  hosts: all
+  connection: ssh
+
+  vars:
+    ansible_ssh_user: pi
+    ansible_become: yes
+
+  tasks:
+  - name: Compile the application
+    command: "go build -o main ."
+    delegate_to: 127.0.0.1
+
+#  - name: Did it Compile?
+#    stat: "main"
+#    delegate_to: 127.0.0.1
+#    register: main
+
+  - name: Create folder
+    file:
+      path: "/etc/api/"
+      state: directory
+      mode: 0755
+
+  - name: Copy executable
+    copy:
+      src: "main"
+      dest: "/etc/api/main"
+    when: main.stat.exists
+
+  - name: Copy Service Files
+    copy:
+      src: "ansible_web-api.service"
+      dest: "/usr/lib/systemd/system/web-api.service"
+
+  - name: Unleash the daemon (make new service known)
+    command: systemctl daemon-reload
+
+  - name: restart service
+    service:
+      name: web-api
+      state: restarted
+      enabled: true

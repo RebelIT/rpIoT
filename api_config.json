@@ -1,0 +1,11 @@
+{
+  "api_port": "6661",
+  "functions": [
+    {"name": "shutdown", "enabled": true},
+    {"name": "reboot", "enabled": true},
+    {"name": "update", "enabled": true},
+    {"name": "upgrade", "enabled": true},
+    {"name": "service", "enabled": true},
+    {"name": "display", "enabled": true}
+    ]
+}
