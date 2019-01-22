@@ -12,11 +12,6 @@
     command: "go build -o main ."
     delegate_to: 127.0.0.1
 
-#  - name: Did it Compile?
-#    stat: "main"
-#    delegate_to: 127.0.0.1
-#    register: main
-
   - name: Create folder
     file:
       path: "/etc/api/"
