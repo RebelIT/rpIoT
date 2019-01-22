@@ -25,12 +25,21 @@
   revision = "ba968bfe8b2f7e042a574c888954fccecfa385b4"
   version = "v0.8.1"
 
+[[projects]]
+  digest = "1:38b469493eb173db9c03321d64adcad4c7991ea0a19b5edc5bdc094f0e8c7384"
+  name = "gopkg.in/alexcesaro/statsd.v2"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "7fea3f0d2fab1ad973e641e51dba45443a311a90"
+  version = "v2.0.0"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
     "github.com/gorilla/mux",
     "github.com/pkg/errors",
+    "gopkg.in/alexcesaro/statsd.v2",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
