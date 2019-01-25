@@ -5,12 +5,13 @@ raspberryPi IOT device API
 A configurable API for my raspberryPi IOT devices around the house. Toggle functions on and off in the 
 configuration file before starting the service.  Used for integrating/controlling rPI's into your home automation. 
 
-## Deploying it (ansible):
-* You need a working GOLang environment setup
-* Update true/false values in the api_config.json for what endpoints you want enabled
-* Update http port number for the api to listen on
-* Update statsd host if you want statsd metrics to be emitted on api usage
-* Update variables in ansible_deploy.yml
+## Deploying it to a raspberryPi (ansible & go):
+* You need a working local GOLang environment for ansible to build the project
+* Update api_config.json 
+    * true/false values for what endpoints you want enabled
+    * http port number for the api to listen on
+    * statsd host if you want statsd metrics to be emitted on api usage
+* Update ansible_deploy.yml with your local gopath
    ```
     gopath: "/Users/rebelit/go"
     goroot: "/usr/local/opt/go/libexec"
@@ -20,6 +21,21 @@ configuration file before starting the service.  Used for integrating/controllin
     ansible-playbook ansible_deploy.yml -i ansible_host --ask-sudo-pass
     ```
     
+## Build/Test/Run it (docker):
+Build the image then run docker with one of the scripts, test, build, or run.  no need for GOLang to be configured 
+locally!
+
+* Build the image:
+    * `docker build -t rpiot .`
+* Run all Tests:
+    * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiottest '/test.sh'`
+* Build the program:
+    * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiottest '/build.sh'`
+    * `scp main pi@yourHost:/your/directory/here/`
+* Run the program:
+    * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiottest '/run.sh'`
+    
+
 ## Using it:
 Hit the current default endpoints to test, add more for any other functions you need for your 
 devices. 
@@ -59,3 +75,13 @@ Hard wired electronics control with GPIO pins
 I set it up to check the config file before every API action. While it is less efficient to read the file every 
 time, it adds the flexibility to toggle endpoints on and off without having to restart the entire API service.
  
+ 
+## Test it:
+
+```
+docker build -t rpiot .
+docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t rpiottest '/test.sh'
+docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t rpiottest '/build.sh'
+docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t rpiottest '/run.sh'
+
+```
