@@ -74,14 +74,3 @@ Hard wired electronics control with GPIO pins
 ### Notes:
 I set it up to check the config file before every API action. While it is less efficient to read the file every 
 time, it adds the flexibility to toggle endpoints on and off without having to restart the entire API service.
- 
- 
-## Test it:
-
-```
-docker build -t rpiot .
-docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t rpiottest '/test.sh'
-docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t rpiottest '/build.sh'
-docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t rpiottest '/run.sh'
-
-```
