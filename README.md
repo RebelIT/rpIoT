@@ -28,12 +28,12 @@ locally!
 * Build the image:
     * `docker build -t rpiot .`
 * Run all Tests:
-    * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiottest '/test.sh'`
+    * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiot /test.sh`
 * Build the program:
-    * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiottest '/build.sh'`
+    * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiot /build.sh`
     * `scp main pi@yourHost:/your/directory/here/`
 * Run the program:
-    * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiottest '/run.sh'`
+    * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiot /run.sh`
     
 
 ## Using it:
