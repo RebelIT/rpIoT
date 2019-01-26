@@ -9,7 +9,6 @@ import (
 	"gopkg.in/alexcesaro/statsd.v2"
 	"io/ioutil"
 	"log"
-	"os"
 	"os/exec"
 	"strconv"
 )
@@ -84,22 +83,18 @@ func readConfig()(Config, error){
 	return c, nil
 }
 
-func sendMetric(uri string, responseCode int, method string ){
+func sendMetric(uri string, responseCode int, method string ) error{
 	c, err := readConfig()
 	if err != nil{
 		log.Printf("[ERROR] metric : %s", err)
-		return
+		return err
 	}
-	host, err := os.Hostname()
-	if err != nil{
-		host = "unknown"
-	}
-	measurement := host+"_web-api"
+	measurement := "rpiot_web_api"
 	if c.Statsd_host == "" {
 		//no statsd host configured, log metric and move along...move along...
 		log.Printf("[INFO] metric : %s,uri_path=%s,response_code=%s,method=%s", measurement, uri,
 			strconv.Itoa(responseCode),method)
-		return
+		return err
 	}
 
 	tags := statsd.Tags("uri_path", uri, "response_code", strconv.Itoa(responseCode), "method", method)
@@ -112,7 +107,7 @@ func sendMetric(uri string, responseCode int, method string ){
 	defer client.Close()
 
 	client.Increment(measurement)
-	return
+	return err
 }
 
 func strToUint8(number string)(uint8, error){
