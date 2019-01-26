@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/gorilla/mux"
 	"github.com/pkg/errors"
+	"github.com/rebelit/rpIoT/sys"
 	"log"
 	"net/http"
 	"strconv"
@@ -50,7 +51,7 @@ func returnInternalError(w http.ResponseWriter, r *http.Request, resp Response, 
 	}
 }
 
-//Namespace handlers
+//Namespace handlers GETS
 func getStatus (w http.ResponseWriter, r *http.Request){
 	resp := Response{}
 	resp.Namespace = r.URL.Path
@@ -59,6 +60,23 @@ func getStatus (w http.ResponseWriter, r *http.Request){
 	returnOk(w,r,resp)
 }
 
+func getSystemStats (w http.ResponseWriter, r *http.Request){
+	resp := sys.Sysinfo{}
+
+	resp.Host = sys.GetHostStats()
+	resp.Cpu = sys.GetCpuStats()
+	resp.Mem = sys.GetMemStats()
+	resp.Disk = sys.GetDiskStats()
+
+	sendMetric(r.URL.Path, http.StatusOK, r.Method)
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(resp); err != nil {
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+	}
+}
+
+//Namespace handlers POSTS
 func powerAction (w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	action := vars["action"]

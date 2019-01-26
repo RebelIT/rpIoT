@@ -29,6 +29,20 @@ func TestHttpGetStatus(t *testing.T){
 	}
 }
 
+func TestHttpGetSystem(t *testing.T){
+	fmt.Println("***Testing GET /api/system***")
+	w := httptest.NewRecorder()
+	r := httptest.NewRequest("GET", "/api/system", nil)
+	r.Header.Set("Content-Type", "application/json; charset=UTF-8")
+
+	getSystemStats(w,r)
+
+	fmt.Printf("%+v", w.Body)
+	if w.Result().StatusCode != 200{
+		t.Errorf("handler returned non-200 response")
+	}
+}
+
 //Expect a non-200 return code in the tests because the tests are expected to run in docker.
 func TestHttpPostPower(t *testing.T){
 	actions := []string{"reboot", "shutdown"}

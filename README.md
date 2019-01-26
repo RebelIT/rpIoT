@@ -46,6 +46,8 @@ and hit them from a browser on your phone or tablet to perform the actions.
 Default endpoints:
 * GET /api/alive
     * health check of the API is running
+* GET /api/system
+    * returns CPU|DISK|MEMORY|HOST|KERNEL information
 * POST /api/power/{reboot|shutdown}
     * power control the raspberryPi
 * POST /api/apt/{update|upgrade}
