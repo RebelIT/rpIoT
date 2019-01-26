@@ -2,6 +2,25 @@
 
 
 [[projects]]
+  digest = "1:e92f5581902c345eb4ceffdcd4a854fb8f73cf436d47d837d1ec98ef1fe0a214"
+  name = "github.com/StackExchange/wmi"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "5d049714c4a64225c3c79a7cf7d02f7fb5b96338"
+  version = "1.0.0"
+
+[[projects]]
+  digest = "1:c96d16a4451e48e2c44b2c3531fd8ec9248d822637f1911a88959ca0bcae4a64"
+  name = "github.com/go-ole/go-ole"
+  packages = [
+    ".",
+    "oleutil",
+  ]
+  pruneopts = "UT"
+  revision = "39dc8486bd0952279431257138bc428275b86797"
+  version = "v1.2.2"
+
+[[projects]]
   digest = "1:c79fb010be38a59d657c48c6ba1d003a8aa651fa56b579d959d74573b7dff8e1"
   name = "github.com/gorilla/context"
   packages = ["."]
@@ -26,12 +45,38 @@
   version = "v0.8.1"
 
 [[projects]]
+  digest = "1:e37f33cdcddadf7078cef6849e3da444c5fcc60f3b47af0dc665490587693976"
+  name = "github.com/shirou/gopsutil"
+  packages = [
+    "cpu",
+    "disk",
+    "host",
+    "internal/common",
+    "mem",
+    "process",
+  ]
+  pruneopts = "UT"
+  revision = "ccc1c1016bc5d10e803189ee43417c50cdde7f1b"
+  version = "v2.18.12"
+
+[[projects]]
   digest = "1:f3a8fd592d6f5355c3a8817ec8552e3ba1fb616799d945c3e56b006e8a26f203"
   name = "github.com/stianeikeland/go-rpio"
   packages = ["."]
   pruneopts = "UT"
   revision = "d43a3ce8186d47f497a6785f997400a1b2f1fdc7"
   version = "v4.4.0"
+
+[[projects]]
+  branch = "master"
+  digest = "1:bb644db32f5bc1e327a0f748ec871edc4dc46f19b4fbbc15bfd95b1460646537"
+  name = "golang.org/x/sys"
+  packages = [
+    "unix",
+    "windows",
+  ]
+  pruneopts = "UT"
+  revision = "b90733256f2e882e81d52f9126de08df5615afd9"
 
 [[projects]]
   digest = "1:38b469493eb173db9c03321d64adcad4c7991ea0a19b5edc5bdc094f0e8c7384"
@@ -47,6 +92,10 @@
   input-imports = [
     "github.com/gorilla/mux",
     "github.com/pkg/errors",
+    "github.com/shirou/gopsutil/cpu",
+    "github.com/shirou/gopsutil/disk",
+    "github.com/shirou/gopsutil/host",
+    "github.com/shirou/gopsutil/mem",
     "github.com/stianeikeland/go-rpio",
     "gopkg.in/alexcesaro/statsd.v2",
   ]
