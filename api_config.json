@@ -2,10 +2,8 @@
   "api_port": "6661",
   "statsd_host": "",
   "functions": [
-    {"name": "shutdown", "enabled": true},
-    {"name": "reboot", "enabled": true},
-    {"name": "update", "enabled": true},
-    {"name": "upgrade", "enabled": true},
+    {"name": "power", "enabled": true},
+    {"name": "packages", "enabled": true},
     {"name": "service", "enabled": true},
     {"name": "display", "enabled": true},
     {"name": "gpio", "enabled": true}

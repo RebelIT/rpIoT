@@ -21,8 +21,10 @@ func NewRouter() *mux.Router {
 var routes = Routes{
 	//API Endpoints
 	Route{"status", "GET", "/api/alive", getStatus},
+	Route{"stats", "GET", "/api/system", getSystemStats},
 	Route{"powerControl", "POST", "/api/power/{action}", powerAction},
-	Route{"systemUpdate", "POST", "/api/apt/{action}", yumAction},
+	Route{"packageManager", "POST", "/api/apt/{action}", updateAction},
+	Route{"packageManager", "POST", "/api/apt/{action}/{package}", installAction},
 	Route{"serviceControl", "POST", "/api/service/{service}/{action}", serviceAction},
 	Route{"hdmiControl", "POST", "/api/display/{action}", displayAction},
 	Route{"pinControl", "POST", "/api/pullup/{number}", gpioPullUp},
