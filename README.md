@@ -27,7 +27,7 @@ locally!
 
 * Build the image:
     * `docker build -t rpiot .`
-* Run all Tests:
+* Run all Tests (currently broken)
     * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiot /test.sh`
 * Build the program:
     * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiot /build.sh`
@@ -43,14 +43,16 @@ devices.
 TIP: If you do not have an API client, you can change these endpoints in the httpHandlers.go to all GET's
 and hit them from a browser on your phone or tablet to perform the actions. 
 
-Default endpoints:
+Common endpoints:
 * GET /api/alive
     * health check of the API is running
 * GET /api/system
-    * returns CPU|DISK|MEMORY|HOST|KERNEL information
+    * returns CPU|DISK|MEMORY|HOST|KERNEL information (if your system supports the syscalls)
 * POST /api/power/{reboot|shutdown}
     * power control the raspberryPi
 * POST /api/apt/{update|upgrade}
+    * system package updates and installation
+* POST /api/apt/{install|remove}/{package-name}
     * system package updates and installation
 * POST /api/service/{service name}/{start|stop|restart}
     * control local services remotely
@@ -58,13 +60,12 @@ Default endpoints:
 
 
 #### What else can I do (outside of the default endpoints):
-###### Project: 
-DAK wall mounted digital calendar & digital magic mirror
+###### Projects: 
+Wall mounted digital calendar & digital magic mirror
 * Turn the HDMI display on and off (pi 3B+) - not tested on other models
     * POST /api/display/{on|off}
-    
-###### Project: 
-Hard wired electronics control with GPIO pins
+
+Hard wired electronics control with GPIO pins (I havent fully tested this yet in my project. should work...)
 * Control GPIO pins
     * POST /api/pullup/{gpio pin #}
         * returns the pin state readout in the json body `{"message":}`
@@ -76,3 +77,5 @@ Hard wired electronics control with GPIO pins
 ### Notes:
 I set it up to check the config file before every API action. While it is less efficient to read the file every 
 time, it adds the flexibility to toggle endpoints on and off without having to restart the entire API service.
+
+Tests are currently broken after last major code refactor. 

@@ -9,7 +9,7 @@ import (
 )
 
 func TestHttpGetStatus(t *testing.T){
-	fmt.Println("***Testing GET /api/alive***")
+	fmt.Println("*** Testing GET /api/alive")
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest("GET", "/api/alive", nil)
 	r.Header.Set("Content-Type", "application/json; charset=UTF-8")
@@ -30,7 +30,7 @@ func TestHttpGetStatus(t *testing.T){
 }
 
 func TestHttpGetSystem(t *testing.T){
-	fmt.Println("***Testing GET /api/system***")
+	fmt.Println("*** Testing GET /api/system")
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest("GET", "/api/system", nil)
 	r.Header.Set("Content-Type", "application/json; charset=UTF-8")
@@ -43,11 +43,10 @@ func TestHttpGetSystem(t *testing.T){
 	}
 }
 
-//Expect a non-200 return code in the tests because the tests are expected to run in docker.
 func TestHttpPostPower(t *testing.T){
 	actions := []string{"reboot", "shutdown"}
 
-	fmt.Printf("***Testing POST /api/power/{%s}***\n", actions)
+	fmt.Printf("*** Testing POST /api/power/{%s}\n", actions)
 
 	for _, a := range actions{
 		w := httptest.NewRecorder()
@@ -58,21 +57,21 @@ func TestHttpPostPower(t *testing.T){
 
 		powerAction(w,r)
 
-		if w.Result().StatusCode != 500{
-			t.Errorf("handler returned non-500 response, are you testing in Docker???")
+		if w.Result().StatusCode != 200{
+			t.Errorf("handler returned non-200 response, are you testing in Docker???")
 		}
 
 		//have to trim whatespace in response body string - I don't know why this is happening yet...
 		resp := strings.Replace(w.Body.String(), "\n", "", -1)
-		expected := `{"namespace":"/api/power/`+a+`","message":"failed starting `+a+` [+1]: : exec: \"`+a+`\": executable file not found in $PATH"}`
-		if resp != expected {
+		expected := "{Shutdown scheduled for"
+		if strings.Contains(resp, expected) {
 			t.Errorf("handler returned unexpected body: got %v want %v",
 				w.Body.String(), expected)
 		}
 	}
 }
 
-func TestHttpPostYum(t *testing.T){
+func TestHttpUpdate(t *testing.T){
 	actions := []string{"update"}
 
 	fmt.Printf("***Testing POST /api/apt/{%s}***\n",actions)
@@ -84,7 +83,7 @@ func TestHttpPostYum(t *testing.T){
 		r.Header.Set("Content-Type", "application/json; charset=UTF-8")
 		r = mux.SetURLVars(r, map[string]string{"action": a})
 
-		yumAction(w,r)
+		updateAction(w,r)
 
 		if w.Result().StatusCode != 200{
 			t.Errorf("handler returned non-200 response, are you testing in Docker???")
@@ -96,6 +95,27 @@ func TestHttpPostYum(t *testing.T){
 		if resp != expected {
 			t.Errorf("handler returned unexpected body: got %v want %v",
 				w.Body.String(), expected)
+		}
+	}
+}
+
+func TestHttpInstall(t *testing.T){
+	actions := []string{"update"}
+	pkg := "wget"
+
+	fmt.Printf("***Testing POST /api/apt/{action}/{package}***\n",actions)
+
+	for _, a := range actions{
+		w := httptest.NewRecorder()
+
+		r := httptest.NewRequest("POST", "/api/apt/"+pkg+"/"+a, nil)
+		r.Header.Set("Content-Type", "application/json; charset=UTF-8")
+		r = mux.SetURLVars(r, map[string]string{"action": a})
+
+		updateAction(w,r)
+
+		if w.Result().StatusCode != 200{
+			t.Errorf("handler returned non-200 response, are you testing in Docker???")
 		}
 	}
 }

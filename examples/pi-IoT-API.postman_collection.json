@@ -1,0 +1,392 @@
+{
+	"info": {
+		"_postman_id": "b80f77d7-2852-4d7e-9956-23931ef1227d",
+		"name": "pi IoT API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/api/alive",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/alive",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"alive"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Alive",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://10.0.0.115:6661/api/alive",
+							"protocol": "http",
+							"host": [
+								"10",
+								"0",
+								"0",
+								"115"
+							],
+							"port": "6661",
+							"path": [
+								"api",
+								"alive"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 22 Jan 2019 03:16:47 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "95"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"namespace\": \"/api/alive\",\n    \"message\": \"alive\",\n    \"timestamp\": \"2019-01-21T21:16:47.803798594-06:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/api/system",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/system",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"system"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/power/reboot",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/power/reboot",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"power",
+						"reboot"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/apt/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/apt/update",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"apt",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/apt/upgrade",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/apt/upgrade",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"apt",
+						"upgrade"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/apt/install/redis-server",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/apt/install/redis-server",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"apt",
+						"install",
+						"redis-server"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/apt/remove/redis-server",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/apt/remove/redis-server",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"apt",
+						"remove",
+						"redis-server"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/service/redis-server/restart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/service/redis-server/restart",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"service",
+						"redis-server",
+						"restart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/display/on",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/display/on",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"display",
+						"on"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/toggle/3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/toggle/3",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"toggle",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/pullup/5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/pullup/5",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"pullup",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/pulldown/5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://10.0.0.115:6661/api/pulldown/5",
+					"protocol": "http",
+					"host": [
+						"10",
+						"0",
+						"0",
+						"115"
+					],
+					"port": "6661",
+					"path": [
+						"api",
+						"pulldown",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
