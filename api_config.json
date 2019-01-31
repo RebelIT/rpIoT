@@ -1,6 +1,11 @@
 {
   "api_port": "6661",
   "statsd_host": "",
+  "ssl": {
+    "enabled": true,
+    "cert_file": "./sslCert/cert.cert",
+    "key_file": "./sslCert/key.key"
+  },
   "functions": [
     {"name": "power", "enabled": true},
     {"name": "packages", "enabled": true},

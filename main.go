@@ -13,8 +13,14 @@ func main(){
 		panic(err)
 	}
 	router := NewRouter()
-	log.Printf("Starting API :yay:")
-	log.Fatal(http.ListenAndServe(":"+c.ApiPort, router))
+	if c.Ssl.Enabled{
+		log.Printf("[INFO] Starting https API :yay:")
+		log.Fatal(http.ListenAndServeTLS(":"+c.ApiPort, c.Ssl.CertFile, c.Ssl.KeyFile, router))
+	}else{
+		log.Printf("[INFO] Starting http API :yay:")
+		log.Printf("[WARN] You are using an insecure connection")
+		log.Fatal(http.ListenAndServe(":"+c.ApiPort, router))
+	}
 }
 
 //Main structs
