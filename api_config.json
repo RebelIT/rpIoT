@@ -3,8 +3,8 @@
   "statsd_host": "",
   "ssl": {
     "enabled": true,
-    "cert_file": "./sslCert/cert.cert",
-    "key_file": "./sslCert/key.key"
+    "cert_file": "/etc/api/ssl/cert.cert",
+    "key_file": "/etc/api/ssl/key.key"
   },
   "functions": [
     {"name": "power", "enabled": true},
