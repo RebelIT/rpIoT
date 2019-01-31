@@ -35,6 +35,23 @@ locally!
 * Run the program:
     * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiot /run.sh`
     
+    
+## SSL:
+* A fellow redditor had a very good suggestion to SSL this beast. Genertate and store your certs, update the api_config.json
+to your cert & key directory.   The below self-signed cert example is for testing and should not be used in production. 
+    * api_config.json:
+    ```
+      "ssl": {
+        "enabled": true,
+        "cert_file": "/etc/app/ssl/cert.cert",
+        "key_file": "/etc/app/ssl/key.key"
+      },
+
+    ```
+    * generate self-signed:
+    ```
+    openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=US/ST=Minnesota/L=MyCity/O=pi/CN=www.MyCoolAwesomtSite.com" -keyout key.key -out cert.cert
+    ```
 
 ## Using it:
 Hit the current default endpoints to test, add more for any other functions you need for your 
