@@ -1,4 +1,4 @@
-package gpio
+package actions
 
 import (
 	"github.com/pkg/errors"

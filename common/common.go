@@ -1,11 +1,15 @@
 package common
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"github.com/pkg/errors"
 	"gopkg.in/alexcesaro/statsd.v2"
 	"io/ioutil"
 	"log"
+	"net/http"
+	"os"
 	"os/exec"
 	"strconv"
 )
@@ -38,6 +42,39 @@ func SendMetric(uri string, responseCode int, method string ) error{
 
 	client.Increment(measurement)
 	return err
+}
+
+func SendSlack (message string){
+	c, err := ReadConfig()
+	if err != nil{
+		log.Printf("[ERROR] slack alert : %s", err)
+		return
+	}
+
+	if c.SlackWebhook == ""{
+		//do nothing if not defined
+		return
+	}
+
+	msgBody := SlackMsg{}
+	msgBody.Username = GetHostname()
+	msgBody.Text = message
+	msgBody.IconPath = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVhCe6Dx8fQfJrg6tprtsnnSVxAU6pGqRZMFkaVGy2UOr276lkGw"
+
+	reqBody, err := json.Marshal(msgBody)
+
+	resp, err := http.Post(c.SlackWebhook, "application/json", bytes.NewReader(reqBody))
+	if err != nil{
+		log.Printf("[ERROR] slack alert : %s", err)
+	}
+
+	if resp.StatusCode != 200 {
+		log.Printf("[ERROR] slack alert: %s\n", fmt.Errorf("slack returned a non 200 response"))
+		return
+	}
+
+	log.Printf("[INFO] slack alert sent: %s\n", message)
+	return
 }
 
 func Cmd(cmdName string, args []string) (cmdOut string, err error) {
@@ -105,4 +142,13 @@ func ReadConfig()(Config, error){
 		return c, errorMsg
 	}
 	return c, nil
+}
+
+func GetHostname()(hostname string){
+	host, err := os.Hostname()
+	if err != nil{
+		host = "unknown"
+	}
+
+	return host
 }

@@ -1,10 +1,10 @@
-package sys
+package actions
 
 type Sysinfo struct{
 	Host 	HostInfo `json:"host"`
 	Cpu 	CpuInfo `json:"cpu"`
 	Mem 	MemInfo `json:"net"`
-	Disk	DiskInfo `json:"disk"	`
+	Disk	DiskInfo `json:"disk"`
 }
 
 type HostInfo struct{

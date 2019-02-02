@@ -1,4 +1,4 @@
-package apt
+package actions
 
 import (
 	"github.com/pkg/errors"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func LocalUpdateAction(action string)(cmdResp string, err error){
+func Update(action string)(cmdResp string, err error){
 	if err := validateUpdateAction(action); err != nil{
 		return "", err
 	}
@@ -23,7 +23,7 @@ func LocalUpdateAction(action string)(cmdResp string, err error){
 	return out, nil
 }
 
-func LocalInstallAction(action string, pkg string)(cmdResp string, err error){
+func Install(action string, pkg string)(cmdResp string, err error){
 	if err := validateInstallAction(action); err != nil{
 		return "", err
 	}

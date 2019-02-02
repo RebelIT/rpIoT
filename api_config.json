@@ -1,6 +1,7 @@
 {
   "api_port": "6661",
   "statsd_host": "",
+  "slack_webhook": "",
   "default_user": "admin",
   "default_user_token": "mytoken",
   "ssl": {

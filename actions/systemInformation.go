@@ -1,4 +1,4 @@
-package sys
+package actions
 
 import (
 	"github.com/shirou/gopsutil/cpu"

@@ -1,11 +1,11 @@
-package svc
+package actions
 
 import (
 	"github.com/pkg/errors"
 	"github.com/rebelit/rpIoT/common"
 )
 
-func LocalServiceAction(service string, action string)(cmdResp string, err error){
+func ServiceControl(service string, action string)(cmdResp string, err error){
 	if err := validateServiceAction(action); err != nil{
 		return "", err
 	}
