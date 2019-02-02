@@ -36,21 +36,27 @@ locally!
     * `docker run -v $PWD:/go/src/github.com/rebelit/rpIoT -i -t --rm rpiot /run.sh`
     
     
-## SSL:
-* A fellow redditor had a very good suggestion to SSL this beast. Genertate and store your certs, update the api_config.json
-to your cert & key directory.   The below self-signed cert example is for testing and should not be used in production. 
+## Security:
+* A fellow redditor had a very good suggestion to SSL & auth this beast. Genertate and store your certs, update the api_config.json
+to your cert & key directory as well as your auth data.   The below self-signed cert example is for testing and should not be used in production. 
     * api_config.json:
     ```
+      "default_user": "admin",
+      "default_user_token": "mytoken",
       "ssl": {
         "enabled": true,
-        "cert_file": "/etc/app/ssl/cert.cert",
-        "key_file": "/etc/app/ssl/key.key"
+        "cert_file": "cert.cert",
+        "key_file": "key.key"
       },
 
     ```
     * generate self-signed:
     ```
     openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=US/ST=Minnesota/L=MyCity/O=pi/CN=www.MyCoolAwesomtSite.com" -keyout key.key -out cert.cert
+    ```
+    * headers for auth:
+    ```
+    curl -k https://172.17.0.2:6661/api/system -H "X-API-Token: mytoken" -H "X-API-User: admin"
     ```
 
 ## Using it:
