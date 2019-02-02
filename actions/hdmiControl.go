@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func LocalPowerAction(action string)(cmdResp string, err error){
+func HdmiPower(action string)(cmdResp string, err error){
 	state, err := validateDisplayAction(action)
 	if err != nil{
 		return "", err

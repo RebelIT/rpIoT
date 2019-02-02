@@ -65,7 +65,7 @@ func returnUnauthorized(w http.ResponseWriter, r *http.Request, resp Response, e
 	}
 }
 
-//Namespace handlers GETS
+//Namespace handlers
 func getStatus (w http.ResponseWriter, r *http.Request){
 	resp := Response{}
 	resp.Namespace = r.URL.Path
@@ -90,7 +90,6 @@ func getSystemStats (w http.ResponseWriter, r *http.Request){
 	}
 }
 
-//Namespace handlers POSTS
 func powerAction (w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	action := vars["action"]
@@ -103,7 +102,7 @@ func powerAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmdOut, err := actions.LocalPowerAction(action)
+	cmdOut, err := actions.SystemPower(action)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return
@@ -125,7 +124,7 @@ func updateAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmdOut, err := actions.LocalUpdateAction(action)
+	cmdOut, err := actions.Update(action)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return
@@ -148,7 +147,7 @@ func installAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmdOut, err := actions.LocalInstallAction(action, pkg)
+	cmdOut, err := actions.Install(action, pkg)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return
@@ -171,7 +170,7 @@ func serviceAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmdOut, err := actions.LocalServiceAction(service, action)
+	cmdOut, err := actions.ServiceControl(service, action)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return
@@ -193,7 +192,7 @@ func displayAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmdOut, err := actions.LocalPowerAction(action)
+	cmdOut, err := actions.HdmiPower(action)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return

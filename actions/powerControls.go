@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func LocalPowerAction(action string)(cmdResp string, err error){
+func SystemPower(action string)(cmdResp string, err error){
 	cmd, err := validatePowerAction(action)
 	if err != nil{
 		return "", err
