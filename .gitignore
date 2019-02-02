@@ -3,3 +3,4 @@
 *.retry
 *main
 sslCert/
+*txt
