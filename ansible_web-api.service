@@ -5,6 +5,7 @@ Description=web-api
 Type=simple
 User=root
 Group=root
+ExecStartPre=/bin/sleep 15
 ExecStart=/etc/api/main
 Restart=always
 
