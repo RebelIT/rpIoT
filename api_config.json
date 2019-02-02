@@ -1,11 +1,11 @@
 {
   "api_port": "6661",
   "statsd_host": "",
-  "slack_webhook": "",
+  "slack_webhook": "https://hooks.slack.com/services/asdfds/asdf/jhasdkfjhsdaf",
   "default_user": "admin",
-  "default_user_token": "mytoken",
+  "default_user_token": "myPiApi",
   "ssl": {
-    "enabled": true,
+    "enabled": false,
     "cert_file": "cert.cert",
     "key_file": "key.key"
   },
