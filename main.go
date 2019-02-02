@@ -15,12 +15,15 @@ func main(){
 	}
 
 	router := web.NewRouter()
+	msg := "[INFO] Starting API on "+common.GetHostname()+" :yay:"
 	if c.Ssl.Enabled{
-		log.Printf("[INFO] Starting https API :yay:")
+		log.Printf(msg)
+		common.SendSlack(msg)
 		log.Fatal(http.ListenAndServeTLS(":"+c.ApiPort, common.APPDIR+c.Ssl.CertFile, common.APPDIR+c.Ssl.KeyFile, router))
 	}else{
-		log.Printf("[INFO] Starting http API :yay:")
+		log.Printf(msg)
 		log.Printf("[WARN] You are using an insecure connection")
+		common.SendSlack(msg)
 		log.Fatal(http.ListenAndServe(":"+c.ApiPort, router))
 	}
 }
