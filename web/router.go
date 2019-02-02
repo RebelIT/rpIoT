@@ -2,14 +2,12 @@ package web
 
 import (
 	"github.com/gorilla/mux"
-	"log"
+	"github.com/pkg/errors"
 	"net/http"
 )
 
 func NewRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
-	auth := Auth{}
-	auth.Populate()
 
 	for _, route := range routes {
 		router.
@@ -17,7 +15,7 @@ func NewRouter() *mux.Router {
 			Path(route.Pattern).
 			Name(route.Name).
 			Handler(route.HandlerFunc)
-		router.Use(auth.AuthMiddleware)
+		router.Use(AuthMiddleware)
 	}
 
 	return router
@@ -37,31 +35,21 @@ var routes = Routes{
 	Route{"pinControl", "POST", "/api/gpio/{number}/toggle", gpioSwitch},
 }
 
-//************
-//Playing with gorilla/mux auth middleware examples.
-//plain text for playing with Auth.
-//TODO: store this securely somewhere.
-func (a *Auth) Populate() {
-	a.TokenUsers = make(map[string]string)
-	a.TokenUsers["12345"] = "test"
-}
-
-func (a *Auth) AuthMiddleware(next http.Handler) http.Handler {
+func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.RequestURI == "/api/alive"{
-			//skip auto for health check
+			//skip auth for health check
 			next.ServeHTTP(w, r)
 		}else {
-			token := r.Header.Get("X-Session-Token")
-
-			if user, found := a.TokenUsers[token]; found {
-				// We found the token in our map
-				log.Printf("Authenticated user %s\n", user)
-				// Pass down the request to the next middleware (or final handler)
+			hdrToken := r.Header.Get("X-API-Token")
+			hdrUser := r.Header.Get("X-API-User")
+			if validateAuth(hdrUser,hdrToken){
+				// Pass down the request to the next handler
 				next.ServeHTTP(w, r)
-			} else {
-				// Write an error and stop the handler chain
-				http.Error(w, "Forbidden", http.StatusForbidden)
+			} else{
+				resp := Response{}
+				resp.Namespace = string(r.URL.Path)
+				returnUnauthorized(w, r, resp, errors.New("nope... unauthorized :("))
 			}
 		}
 	})

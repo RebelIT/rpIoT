@@ -18,8 +18,3 @@ type Response struct{
 	Namespace	string		`json:"namespace"`
 	Message		string		`json:"message"`
 }
-
-//Auth mux middleware
-type Auth struct {
-	TokenUsers map[string]string
-}
