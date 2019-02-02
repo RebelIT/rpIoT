@@ -1,21 +1,24 @@
-package main
+package web
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/pkg/errors"
+	"net/http"
 )
 
 func NewRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
+
 	for _, route := range routes {
 		router.
 			Methods(route.Method).
 			Path(route.Pattern).
 			Name(route.Name).
 			Handler(route.HandlerFunc)
+		router.Use(AuthMiddleware)
 	}
 
 	return router
-
 }
 
 var routes = Routes{
@@ -30,4 +33,24 @@ var routes = Routes{
 	Route{"pinControl", "POST", "/api/gpio/{number}/pullup", gpioPullUp},
 	Route{"pinControl", "POST", "/api/gpio/{number}/pulldown", gpioPullDown},
 	Route{"pinControl", "POST", "/api/gpio/{number}/toggle", gpioSwitch},
+}
+
+func AuthMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.RequestURI == "/api/alive"{
+			//skip auth for health check
+			next.ServeHTTP(w, r)
+		}else {
+			hdrToken := r.Header.Get("X-API-Token")
+			hdrUser := r.Header.Get("X-API-User")
+			if validateAuth(hdrUser,hdrToken){
+				// Pass down the request to the next handler
+				next.ServeHTTP(w, r)
+			} else{
+				resp := Response{}
+				resp.Namespace = string(r.URL.Path)
+				returnUnauthorized(w, r, resp, errors.New("nope... unauthorized :("))
+			}
+		}
+	})
 }

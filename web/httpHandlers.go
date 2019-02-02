@@ -1,4 +1,4 @@
-package main
+package web
 
 import (
 	"encoding/json"
@@ -44,6 +44,20 @@ func returnBad(w http.ResponseWriter, r *http.Request, resp Response, err error)
 
 func returnInternalError(w http.ResponseWriter, r *http.Request, resp Response, err error){
 	code := http.StatusInternalServerError
+	common.SendMetric(r.URL.Path, code, r.Method)
+
+	resp.Message = err.Error()
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(code)
+
+	if err := json.NewEncoder(w).Encode(resp); err != nil {
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+	}
+}
+
+func returnUnauthorized(w http.ResponseWriter, r *http.Request, resp Response, err error){
+	code := http.StatusUnauthorized
 	common.SendMetric(r.URL.Path, code, r.Method)
 
 	resp.Message = err.Error()

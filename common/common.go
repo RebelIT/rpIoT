@@ -2,15 +2,16 @@ package common
 
 import (
 	"encoding/json"
-	"gopkg.in/alexcesaro/statsd.v2"
 	"github.com/pkg/errors"
+	"gopkg.in/alexcesaro/statsd.v2"
 	"io/ioutil"
 	"log"
 	"os/exec"
 	"strconv"
 )
 
-const CONFIG = "/etc/api/api_config.json"
+const APPDIR = "/etc/api/"
+const CONFIG = "api_config.json"
 
 func SendMetric(uri string, responseCode int, method string ) error{
 	c, err := ReadConfig()
@@ -94,7 +95,7 @@ func CheckEnabled(function string)(err error){
 
 func ReadConfig()(Config, error){
 	c := Config{}
-	config, err := ioutil.ReadFile(CONFIG)
+	config, err := ioutil.ReadFile(APPDIR+CONFIG)
 	if err != nil {
 		return c, err
 	}
@@ -105,4 +106,3 @@ func ReadConfig()(Config, error){
 	}
 	return c, nil
 }
-
