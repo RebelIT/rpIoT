@@ -1,4 +1,4 @@
-package hdmi
+package actions
 
 import (
 	"github.com/pkg/errors"

@@ -1,4 +1,4 @@
-package sys
+package actions
 
 type Sysinfo struct{
 	Host 	HostInfo `json:"host"`

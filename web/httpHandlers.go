@@ -3,13 +3,8 @@ package web
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
-	"github.com/rebelit/rpIoT/apt"
+	"github.com/rebelit/rpIoT/actions"
 	"github.com/rebelit/rpIoT/common"
-	"github.com/rebelit/rpIoT/gpio"
-	"github.com/rebelit/rpIoT/hdmi"
-	"github.com/rebelit/rpIoT/pwr"
-	"github.com/rebelit/rpIoT/svc"
-	"github.com/rebelit/rpIoT/sys"
 	"log"
 	"net/http"
 	"strconv"
@@ -80,12 +75,12 @@ func getStatus (w http.ResponseWriter, r *http.Request){
 }
 
 func getSystemStats (w http.ResponseWriter, r *http.Request){
-	resp := sys.Sysinfo{}
+	resp := actions.Sysinfo{}
 
-	resp.Host = sys.GetHostStats()
-	resp.Cpu = sys.GetCpuStats()
-	resp.Mem = sys.GetMemStats()
-	resp.Disk = sys.GetDiskStats()
+	resp.Host = actions.GetHostStats()
+	resp.Cpu = actions.GetCpuStats()
+	resp.Mem = actions.GetMemStats()
+	resp.Disk = actions.GetDiskStats()
 
 	common.SendMetric(r.URL.Path, http.StatusOK, r.Method)
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
@@ -108,7 +103,7 @@ func powerAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmdOut, err := pwr.LocalPowerAction(action)
+	cmdOut, err := actions.LocalPowerAction(action)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return
@@ -130,7 +125,7 @@ func updateAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmdOut, err := apt.LocalUpdateAction(action)
+	cmdOut, err := actions.LocalUpdateAction(action)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return
@@ -153,7 +148,7 @@ func installAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmdOut, err := apt.LocalInstallAction(action, pkg)
+	cmdOut, err := actions.LocalInstallAction(action, pkg)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return
@@ -176,7 +171,7 @@ func serviceAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmdOut, err := svc.LocalServiceAction(service, action)
+	cmdOut, err := actions.LocalServiceAction(service, action)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return
@@ -198,7 +193,7 @@ func displayAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmdOut, err := hdmi.LocalPowerAction(action)
+	cmdOut, err := actions.LocalPowerAction(action)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return
@@ -221,12 +216,12 @@ func gpioSwitch (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := gpio.ValidateGpioPin(pin); err != nil{
+	if err := actions.ValidateGpioPin(pin); err != nil{
 		returnBad(w,r,resp, err)
 		return
 	}
 
-	if err := gpio.GpioToggle(pin); err != nil{
+	if err := actions.GpioToggle(pin); err != nil{
 		returnInternalError(w,r,resp, err)
 		return
 	}
@@ -247,12 +242,12 @@ func gpioPullDown (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := gpio.ValidateGpioPin(pin); err != nil{
+	if err := actions.ValidateGpioPin(pin); err != nil{
 		returnBad(w,r,resp, err)
 		return
 	}
 
-	pinState, err := gpio.GpioDown(pin)
+	pinState, err := actions.GpioDown(pin)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return
@@ -274,12 +269,12 @@ func gpioPullUp (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := gpio.ValidateGpioPin(pin); err != nil{
+	if err := actions.ValidateGpioPin(pin); err != nil{
 		returnBad(w,r,resp, err)
 		return
 	}
 
-	pinState, err := gpio.GpioUp(pin)
+	pinState, err := actions.GpioUp(pin)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return

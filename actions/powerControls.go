@@ -1,4 +1,4 @@
-package pwr
+package actions
 
 import (
 	"github.com/pkg/errors"

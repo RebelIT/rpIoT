@@ -1,4 +1,4 @@
-package svc
+package actions
 
 import (
 	"github.com/pkg/errors"

@@ -1,4 +1,4 @@
-package apt
+package actions
 
 import (
 	"github.com/pkg/errors"
