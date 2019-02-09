@@ -29,6 +29,7 @@ var routes = Routes{
 	Route{"packageManager", "POST", "/api/apt/{action}", updateAction},
 	Route{"packageManager", "POST", "/api/apt/{package}/{action}", installAction},
 	Route{"serviceControl", "POST", "/api/service/{service}/{action}", serviceAction},
+	Route{"hdmiControl", "GET", "/api/display", displayGet},
 	Route{"hdmiControl", "POST", "/api/display/{action}", displayAction},
 	Route{"pinControl", "POST", "/api/gpio/{number}/pullup", gpioPullUp},
 	Route{"pinControl", "POST", "/api/gpio/{number}/pulldown", gpioPullDown},

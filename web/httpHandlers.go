@@ -180,6 +180,25 @@ func serviceAction (w http.ResponseWriter, r *http.Request) {
 	returnOk(w,r,resp)
 }
 
+func displayGet (w http.ResponseWriter, r *http.Request) {
+	resp := Response{}
+	resp.Namespace = string(r.URL.Path)
+
+	if err := common.CheckEnabled("display"); err != nil{
+		returnBad(w,r,resp, err)
+		return
+	}
+
+	pwrState, err := actions.GetHdmiPower()
+	if err != nil{
+		returnInternalError(w,r,resp, err)
+		return
+	}
+
+	resp.Message = pwrState
+	returnOk(w,r,resp)
+}
+
 func displayAction (w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	action := vars["action"]

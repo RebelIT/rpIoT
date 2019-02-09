@@ -24,6 +24,14 @@ func HdmiPower(action string)(cmdResp string, err error){
 	return out, nil
 }
 
+func GetHdmiPower()(state string, error error){
+	out, err := common.Cmd(string("vcgencmd"), []string{"display_power"})
+	if err != nil{
+		return "", err
+	}
+
+	return strings.Split(out, "=")[1], nil
+}
 
 func validateDisplayAction(state string)(action string, err error){
 	actual := ""
