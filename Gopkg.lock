@@ -10,31 +10,23 @@
   version = "1.0.0"
 
 [[projects]]
-  digest = "1:c96d16a4451e48e2c44b2c3531fd8ec9248d822637f1911a88959ca0bcae4a64"
+  digest = "1:440028f55cb322d8cb5b9d5ebec298a00b7d74690a658fe6b1c0c0b44341bfae"
   name = "github.com/go-ole/go-ole"
   packages = [
     ".",
     "oleutil",
   ]
   pruneopts = "UT"
-  revision = "39dc8486bd0952279431257138bc428275b86797"
-  version = "v1.2.2"
+  revision = "97b6244175ae18ea6eef668034fd6565847501c9"
+  version = "v1.2.4"
 
 [[projects]]
-  digest = "1:c79fb010be38a59d657c48c6ba1d003a8aa651fa56b579d959d74573b7dff8e1"
-  name = "github.com/gorilla/context"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "08b5f424b9271eedf6f9f0ce86cb9396ed337a42"
-  version = "v1.1.1"
-
-[[projects]]
-  digest = "1:e73f5b0152105f18bc131fba127d9949305c8693f8a762588a82a48f61756f5f"
+  digest = "1:ca59b1175189b3f0e9f1793d2c350114be36eaabbe5b9f554b35edee1de50aea"
   name = "github.com/gorilla/mux"
   packages = ["."]
   pruneopts = "UT"
-  revision = "e3702bed27f0d39777b0b37b664b6280e8ef8fbf"
-  version = "v1.6.2"
+  revision = "a7962380ca08b5a188038c69871b8d3fbdf31e89"
+  version = "v1.7.0"
 
 [[projects]]
   digest = "1:cf31692c14422fa27c83a05292eb5cbe0fb2775972e8f1f8446a71549bd8980b"
@@ -45,7 +37,7 @@
   version = "v0.8.1"
 
 [[projects]]
-  digest = "1:5331094ce2c687a921af5ec1367fe96e894e5b6866c2c3b8d415e86b65e69bce"
+  digest = "1:93c93626c76feac9d1908eb494d7b24e681ac2822d2a06c236f7a797b86bd6a5"
   name = "github.com/shirou/gopsutil"
   packages = [
     "cpu",
@@ -57,8 +49,8 @@
     "process",
   ]
   pruneopts = "UT"
-  revision = "ccc1c1016bc5d10e803189ee43417c50cdde7f1b"
-  version = "v2.18.12"
+  revision = "071446942108a03a13cf0717275ad3bdbcb691b4"
+  version = "v2.19.01"
 
 [[projects]]
   branch = "master"
@@ -78,14 +70,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:bb644db32f5bc1e327a0f748ec871edc4dc46f19b4fbbc15bfd95b1460646537"
+  digest = "1:c65bd2920426dabbd19ea6a3e54ff8475fa930935ba58d23e8db49c142648279"
   name = "golang.org/x/sys"
   packages = [
     "unix",
     "windows",
   ]
   pruneopts = "UT"
-  revision = "b90733256f2e882e81d52f9126de08df5615afd9"
+  revision = "a34e9553db1e492c9a76e60db2296ae7e5fbb772"
 
 [[projects]]
   digest = "1:38b469493eb173db9c03321d64adcad4c7991ea0a19b5edc5bdc094f0e8c7384"
