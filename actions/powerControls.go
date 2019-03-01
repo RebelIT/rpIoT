@@ -2,36 +2,38 @@ package actions
 
 import (
 	"github.com/pkg/errors"
-	"github.com/rebelit/rpIoT/common"
-	"strings"
+	"log"
+	"syscall"
+	"time"
 )
 
-func SystemPower(action string)(cmdResp string, err error){
-	cmd, err := validatePowerAction(action)
-	if err != nil{
-		return "", err
+func SystemPower(action string)(err error){
+	if err := validatePowerAction(action); err != nil{
+		return err
 	}
 
-	out, err := common.Cmd("shutdown", []string{cmd,"+1"})
-	if err != nil{
-		return "", err
-	}
+	go reboot()
 
-	if !strings.Contains(out, "Shutdown scheduled for"){
-		return "", errors.New(out)
-	}
-
-	return out, nil
+	return nil
 }
 
-func validatePowerAction(action string)(val string, err error){
-	actual := ""
-	if action == "shutdown"{
-		actual = " -s"
-	} else if action == "reboot"{
-		actual = "-r"
-	} else{
-		return "", errors.New("power action is invalid")
+func validatePowerAction(action string) error{
+	if action != "reboot"{
+		return errors.New("power action is invalid")
 	}
-	return actual, nil
+	return nil
+}
+
+func reboot(){
+	//best effort no return in goroutine
+	time.Sleep(time.Second * 10)
+
+	var linuxRebootMagic1 uintptr = 0xfee1dead
+	var linuxRebootMagic2 uintptr = 672274793
+	var linuxRebootCmdRestart uintptr = 0x1234567
+
+	_,_, errno := syscall.Syscall(syscall.SYS_REBOOT, linuxRebootMagic1, linuxRebootMagic2, linuxRebootCmdRestart)
+	if errno != 0{
+		log.Printf("system reboot failed with error code %d", errno)
+	}
 }
