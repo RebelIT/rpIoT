@@ -102,13 +102,13 @@ func powerAction (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cmdOut, err := actions.SystemPower(action)
+	err := actions.SystemPower(action)
 	if err != nil{
 		returnInternalError(w,r,resp, err)
 		return
 	}
 
-	resp.Message = cmdOut
+	resp.Message = "ok"
 	returnOk(w,r,resp)
 }
 
