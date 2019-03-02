@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-//Http Response helper functions
+//Http Generic Response functions
 func returnOk(w http.ResponseWriter, r *http.Request, resp Response){
 	code := http.StatusOK
 	common.SendMetric(r.URL.Path, code, r.Method)
@@ -88,6 +88,20 @@ func getSystemStats (w http.ResponseWriter, r *http.Request){
 	if err := json.NewEncoder(w).Encode(resp); err != nil {
 		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
 	}
+}
+
+func getUpdates (w http.ResponseWriter, r *http.Request){	//Returns everything in apt/history.log
+	resp := Response{}
+	resp.Namespace = r.URL.Path
+
+	data, err  := actions.CheckUpdateLog()
+	if err != nil{
+		returnInternalError(w, r, resp, err)
+	}
+
+	resp.Message = "ok"
+	resp.Data = data
+	returnOk(w,r,resp)
 }
 
 func powerAction (w http.ResponseWriter, r *http.Request) {

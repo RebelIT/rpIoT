@@ -2,8 +2,8 @@ package actions
 
 import (
 	"fmt"
-	//"github.com/pkg/errors"
 	"github.com/rebelit/rpIoT/common"
+	"io/ioutil"
 	"strings"
 )
 
@@ -12,14 +12,8 @@ func Update(action string)(cmdResp string, err error){
 		return "", err
 	}
 
-	out, err := common.Cmd("apt-get", []string{action, "-y"})
-	if err != nil{
-		return "", err
-	}
-
-	if !strings.Contains(out, "Shutdown scheduled for"){
-		return "", fmt.Errorf(out)
-	}
+	go common.Cmd("apt-get", []string{action, "-y"})
+	out := fmt.Sprintf("%s initiated", action)
 
 	return out, nil
 }
@@ -29,12 +23,27 @@ func Install(action string, pkg string)(cmdResp string, err error){
 		return "", err
 	}
 
-	out, err := common.Cmd("apt-get", []string{action ,pkg ,"-y"})
-	if err != nil{
-		return "", err
-	}
+	go common.Cmd("apt-get", []string{action ,pkg ,"-y"})
+	out := fmt.Sprintf("%s initiated", action)
 
 	return out, nil
+}
+
+func CheckUpdateLog()(log []string, error error){
+	logData := []string{}
+
+	data, err := ioutil.ReadFile(common.UPDATE_LOG_DIR)
+	if err != nil{
+		return nil, err
+	}
+
+	temp := strings.Split(string(data), "\n")
+
+	for _, line := range temp{
+		logData = append(logData, line)
+	}
+
+	return logData, nil
 }
 
 func validateUpdateAction(action string) error{
