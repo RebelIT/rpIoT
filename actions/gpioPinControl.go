@@ -1,7 +1,7 @@
 package actions
 
 import (
-	"github.com/pkg/errors"
+	"fmt"
 	"github.com/rebelit/rpIoT/common"
 	"github.com/stianeikeland/go-rpio"
 	"strconv"
@@ -66,7 +66,7 @@ func ValidateGpioPin(pin string) error{
 	//26 max pins to control
 	i, err := strconv.Atoi(pin)
 	if err != nil{
-		return errors.Errorf("%d is not a number", i)
+		return fmt.Errorf("%d is not a number", i)
 	}
 
 	if err := common.InRange(i, 2, 26); err != nil{

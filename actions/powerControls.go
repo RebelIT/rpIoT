@@ -1,7 +1,7 @@
 package actions
 
 import (
-	"github.com/pkg/errors"
+	"fmt"
 	"log"
 	"syscall"
 	"time"
@@ -19,7 +19,7 @@ func SystemPower(action string)(err error){
 
 func validatePowerAction(action string) error{
 	if action != "reboot"{
-		return errors.New("power action is invalid")
+		return fmt.Errorf("power action is invalid")
 	}
 	return nil
 }
