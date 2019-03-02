@@ -1,7 +1,7 @@
 package actions
 
 import (
-	"github.com/pkg/errors"
+	"fmt"
 	"github.com/rebelit/rpIoT/common"
 )
 
@@ -16,7 +16,7 @@ func ServiceControl(service string, action string)(cmdResp string, err error){
 	}
 
 	if out != ""{
-		return "", errors.New(out)
+		return "", fmt.Errorf(out)
 	}
 
 	return out, nil
@@ -35,7 +35,7 @@ func validateServiceAction(action string) error{
 	}
 
 	if !validated{
-		return errors.New("service control "+action+" is invalid")
+		return fmt.Errorf("service control %s is invalid", action)
 	}
 	return nil
 }

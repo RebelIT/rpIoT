@@ -1,7 +1,8 @@
 package actions
 
 import (
-	"github.com/pkg/errors"
+	"fmt"
+	//"github.com/pkg/errors"
 	"github.com/rebelit/rpIoT/common"
 	"strings"
 )
@@ -17,7 +18,7 @@ func Update(action string)(cmdResp string, err error){
 	}
 
 	if !strings.Contains(out, "Shutdown scheduled for"){
-		return "", errors.New(out)
+		return "", fmt.Errorf(out)
 	}
 
 	return out, nil
@@ -42,7 +43,7 @@ func validateUpdateAction(action string) error{
 	} else if action == "upgrade"{
 		return nil
 	} else{
-		return errors.New("update action is invalid")
+		return fmt.Errorf("update action is invalid")
 	}
 	return nil
 }
@@ -53,7 +54,7 @@ func validateInstallAction(action string) error{
 	} else if action == "remove"{
 		return nil
 	} else{
-		return errors.New("action "+action+" is invalid")
+		return fmt.Errorf("action %s is invalid", action)
 	}
 	return nil
 }

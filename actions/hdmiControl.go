@@ -1,7 +1,7 @@
 package actions
 
 import (
-	"github.com/pkg/errors"
+	"fmt"
 	"github.com/rebelit/rpIoT/common"
 	"strings"
 )
@@ -18,7 +18,7 @@ func HdmiPower(action string)(cmdResp string, err error){
 	}
 
 	if !strings.Contains(out, "display_power="+state){
-		return "", errors.New(out)
+		return "", fmt.Errorf(out)
 	}
 
 	return out, nil
@@ -40,7 +40,7 @@ func validateDisplayAction(state string)(action string, err error){
 	} else if state == "off"{
 		actual = "0"
 	} else{
-		return "", errors.New("monitor control "+action+" is invalid")
+		return "", fmt.Errorf("monitor control %s is invalid", action)
 	}
 	return actual, nil
 }

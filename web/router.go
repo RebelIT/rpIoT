@@ -1,8 +1,8 @@
 package web
 
 import (
+	"fmt"
 	"github.com/gorilla/mux"
-	"github.com/pkg/errors"
 	"net/http"
 )
 
@@ -50,7 +50,7 @@ func AuthMiddleware(next http.Handler) http.Handler {
 			} else{
 				resp := Response{}
 				resp.Namespace = string(r.URL.Path)
-				returnUnauthorized(w, r, resp, errors.New("nope... unauthorized :("))
+				returnUnauthorized(w, r, resp, fmt.Errorf("nope... unauthorized :("))
 			}
 		}
 	})

@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/pkg/errors"
 	"gopkg.in/alexcesaro/statsd.v2"
 	"io/ioutil"
 	"log"
@@ -90,7 +89,7 @@ func InRange(i, min, max int) error {
 	if (i >= min) && (i <= max) {
 		return nil
 	} else {
-		return errors.New("out of range")
+		return fmt.Errorf("out of range")
 	}
 }
 
@@ -121,10 +120,10 @@ func CheckEnabled(function string)(err error){
 		}
 	}
 	if !found{
-		return errors.New("function name "+function+" was not found in config file")
+		return fmt.Errorf("function name "+function+" was not found in config file")
 	}
 	if !enabled{
-		return errors.New("API function disabled")
+		return fmt.Errorf("API function disabled")
 	}
 
 	return nil
@@ -138,7 +137,7 @@ func ReadConfig()(Config, error){
 	}
 
 	if err := json.Unmarshal(config, &c); err != nil{
-		errorMsg := errors.New("unable to read Config file")
+		errorMsg := fmt.Errorf("unable to read Config file")
 		return c, errorMsg
 	}
 	return c, nil
