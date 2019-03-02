@@ -26,6 +26,7 @@ var routes = Routes{
 	Route{"status", "GET", "/api/alive", getStatus},
 	Route{"stats", "GET", "/api/system", getSystemStats},
 	Route{"powerControl", "POST", "/api/power/{action}", powerAction},
+	Route{"packageManager", "GET", "/api/apt", getUpdates},
 	Route{"packageManager", "POST", "/api/apt/{action}", updateAction},
 	Route{"packageManager", "POST", "/api/apt/{package}/{action}", installAction},
 	Route{"serviceControl", "POST", "/api/service/{service}/{action}", serviceAction},

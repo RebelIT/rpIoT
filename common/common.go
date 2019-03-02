@@ -11,10 +11,14 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+	"strings"
 )
 
-const APPDIR = "/etc/api/"
-const CONFIG = "api_config.json"
+const (
+	APPDIR = "/etc/api/"
+	CONFIG = "api_config.json"
+	UPDATE_LOG_DIR = "/var/log/apt/history.log"
+)
 
 func SendMetric(uri string, responseCode int, method string ) error{
 	c, err := ReadConfig()
@@ -82,7 +86,9 @@ func Cmd(cmdName string, args []string) (cmdOut string, err error) {
 		return string(out), err
 	}
 
-	return string(out),nil
+	fmtOut := strings.Replace(string(out), "\n", "", -1)
+
+	return fmtOut,nil
 }
 
 func InRange(i, min, max int) error {

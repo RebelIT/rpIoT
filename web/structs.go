@@ -17,4 +17,5 @@ type Route struct {
 type Response struct{
 	Namespace	string		`json:"namespace"`
 	Message		string		`json:"message"`
+	Data		[]string 	`json:"data"`
 }
