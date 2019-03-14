@@ -1,19 +1,4 @@
 {
   "api_port": "6661",
-  "statsd_host": "",
-  "slack_webhook": "https://hooks.slack.com/services/asdfds/asdf/jhasdkfjhsdaf",
-  "default_user": "admin",
-  "default_user_token": "myPiApi",
-  "ssl": {
-    "enabled": false,
-    "cert_file": "cert.cert",
-    "key_file": "key.key"
-  },
-  "functions": [
-    {"name": "power", "enabled": true},
-    {"name": "packages", "enabled": true},
-    {"name": "service", "enabled": true},
-    {"name": "display", "enabled": true},
-    {"name": "gpio", "enabled": true}
-    ]
+  "ssl_enabled": false
 }

@@ -3,6 +3,7 @@ package web
 import (
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/rebelit/rpIoT/config"
 	"net/http"
 )
 
@@ -15,7 +16,9 @@ func NewRouter() *mux.Router {
 			Path(route.Pattern).
 			Name(route.Name).
 			Handler(route.HandlerFunc)
-		router.Use(AuthMiddleware)
+		if config.ApiConfig.AuthEnabled{	//auth enabled use auth middleware function
+			router.Use(AuthMiddleware)
+		}
 	}
 
 	return router

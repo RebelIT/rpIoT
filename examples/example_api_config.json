@@ -1,0 +1,17 @@
+{
+  "install_dir": "/etc/api/",
+  "api_port": "6661",
+  "statsd_host": "",
+  "slack_webhook": "https://hooks.slack.com/services/asdfds/asdf/jhasdkfjhsdaf",
+  "default_user": "rebelit",
+  "default_user_token": "qwerty123!!",
+  "auth_enabled": true,
+  "ssl_enabled": false,
+  "ssl_cert_name": "mySuperSecureCert.cert",
+  "ssl_key_name": "mySuperSecureCertKey.key",
+  "endpoint_power": true,
+  "endpoint_packages": true,
+  "endpoint_service": false,
+  "endpoint_display": true,
+  "endpoint_gpio": false
+}
