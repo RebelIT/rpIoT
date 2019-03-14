@@ -1,29 +1,30 @@
 package main
 
 import (
+	"flag"
 	"github.com/rebelit/rpIoT/common"
+	"github.com/rebelit/rpIoT/config"
 	"github.com/rebelit/rpIoT/web"
 	"log"
 	"net/http"
 )
 
 func main(){
-	c, err := common.ReadConfig()
-	if err != nil{
-		log.Printf("[PANIC] Config is required and there is an error : %s", err)
-		panic(err)
-	}
+	f := flag.String("config", "", "path to config.json to override default settings.")
+	flag.Parse()
+
+	config.DoApiSettings(*f)
 
 	router := web.NewRouter()
-	msg := "[INFO] Starting API on "+common.GetHostname()+" :yay:"
-	if c.Ssl.Enabled{
+	msg := "[INFO] Starting API on "+common.GetHostname()+" on port:"+config.ApiConfig.ApiPort+" :yay:"
+	if config.ApiConfig.SslEnabled{
 		log.Printf(msg)
 		common.SendSlack(msg)
-		log.Fatal(http.ListenAndServeTLS(":"+c.ApiPort, common.APPDIR+c.Ssl.CertFile, common.APPDIR+c.Ssl.KeyFile, router))
+		log.Fatal(http.ListenAndServeTLS(":"+config.ApiConfig.ApiPort, config.ApiConfig.SslCertName, config.ApiConfig.SslKeyName, router))
 	}else{
 		log.Printf(msg)
 		log.Printf("[WARN] You are using an insecure connection")
 		common.SendSlack(msg)
-		log.Fatal(http.ListenAndServe(":"+c.ApiPort, router))
+		log.Fatal(http.ListenAndServe(":"+config.ApiConfig.ApiPort, router))
 	}
 }

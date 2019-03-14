@@ -5,6 +5,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/rebelit/rpIoT/actions"
 	"github.com/rebelit/rpIoT/common"
+	"github.com/rebelit/rpIoT/config"
 	"log"
 	"net/http"
 	"strconv"
@@ -28,6 +29,20 @@ func returnBad(w http.ResponseWriter, r *http.Request, resp Response, err error)
 	common.SendMetric(r.URL.Path, code, r.Method)
 
 	resp.Message = err.Error()
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(code)
+
+	if err := json.NewEncoder(w).Encode(resp); err != nil {
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+	}
+}
+
+func returnDisabled(w http.ResponseWriter, r *http.Request, resp Response){
+	code := http.StatusForbidden
+	common.SendMetric(r.URL.Path, code, r.Method)
+
+	resp.Message = "endpoint is disabled"
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(code)
@@ -64,6 +79,7 @@ func returnUnauthorized(w http.ResponseWriter, r *http.Request, resp Response, e
 		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
 	}
 }
+
 
 //Namespace handlers
 func getStatus (w http.ResponseWriter, r *http.Request){
@@ -111,8 +127,8 @@ func powerAction (w http.ResponseWriter, r *http.Request) {
 	resp := Response{}
 	resp.Namespace = string(r.URL.Path)
 
-	if err := common.CheckEnabled("power"); err != nil{
-		returnBad(w,r,resp, err)
+	if !config.ApiConfig.EndpointPower{
+		returnDisabled(w,r,resp)
 		return
 	}
 
@@ -133,8 +149,8 @@ func updateAction (w http.ResponseWriter, r *http.Request) {
 	resp := Response{}
 	resp.Namespace = string(r.URL.Path)
 
-	if err := common.CheckEnabled("packages"); err != nil{
-		returnBad(w,r,resp, err)
+	if !config.ApiConfig.EndpointPower{
+		returnDisabled(w,r,resp)
 		return
 	}
 
@@ -156,8 +172,8 @@ func installAction (w http.ResponseWriter, r *http.Request) {
 	resp := Response{}
 	resp.Namespace = string(r.URL.Path)
 
-	if err := common.CheckEnabled("packages"); err != nil{
-		returnBad(w,r,resp, err)
+	if !config.ApiConfig.EndpointPackages{
+		returnDisabled(w,r,resp)
 		return
 	}
 
@@ -179,8 +195,8 @@ func serviceAction (w http.ResponseWriter, r *http.Request) {
 	resp := Response{}
 	resp.Namespace = string(r.URL.Path)
 
-	if err := common.CheckEnabled("service"); err != nil{
-		returnBad(w,r,resp, err)
+	if !config.ApiConfig.EndpointService{
+		returnDisabled(w,r,resp)
 		return
 	}
 
@@ -198,8 +214,8 @@ func displayGet (w http.ResponseWriter, r *http.Request) {
 	resp := Response{}
 	resp.Namespace = string(r.URL.Path)
 
-	if err := common.CheckEnabled("display"); err != nil{
-		returnBad(w,r,resp, err)
+	if !config.ApiConfig.EndpointDisplay{
+		returnDisabled(w,r,resp)
 		return
 	}
 
@@ -220,8 +236,8 @@ func displayAction (w http.ResponseWriter, r *http.Request) {
 	resp := Response{}
 	resp.Namespace = string(r.URL.Path)
 
-	if err := common.CheckEnabled("display"); err != nil{
-		returnBad(w,r,resp, err)
+	if !config.ApiConfig.EndpointDisplay{
+		returnDisabled(w,r,resp)
 		return
 	}
 
@@ -243,8 +259,8 @@ func gpioSwitch (w http.ResponseWriter, r *http.Request) {
 	resp.Namespace = string(r.URL.Path)
 
 
-	if err := common.CheckEnabled("gpio"); err != nil{
-		returnBad(w,r,resp, err)
+	if !config.ApiConfig.EndpointGpio{
+		returnDisabled(w,r,resp)
 		return
 	}
 
@@ -269,8 +285,8 @@ func gpioPullDown (w http.ResponseWriter, r *http.Request) {
 	resp := Response{}
 	resp.Namespace = string(r.URL.Path)
 
-	if err := common.CheckEnabled("gpio"); err != nil{
-		returnBad(w,r,resp, err)
+	if !config.ApiConfig.EndpointGpio{
+		returnDisabled(w,r,resp)
 		return
 	}
 
@@ -296,8 +312,8 @@ func gpioPullUp (w http.ResponseWriter, r *http.Request) {
 	resp := Response{}
 	resp.Namespace = string(r.URL.Path)
 
-	if err := common.CheckEnabled("gpio"); err != nil{
-		returnBad(w,r,resp, err)
+	if !config.ApiConfig.EndpointGpio{
+		returnDisabled(w,r,resp)
 		return
 	}
 

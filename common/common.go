@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/rebelit/rpIoT/config"
 	"gopkg.in/alexcesaro/statsd.v2"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -15,27 +15,20 @@ import (
 )
 
 const (
-	APPDIR = "/etc/api/"
-	CONFIG = "api_config.json"
 	UPDATE_LOG_DIR = "/var/log/apt/history.log"
 )
 
-func SendMetric(uri string, responseCode int, method string ) error{
-	c, err := ReadConfig()
-	if err != nil{
-		log.Printf("[ERROR] metric : %s", err)
-		return err
-	}
+func SendMetric(uri string, responseCode int, method string ){
 	measurement := "rpiot_web_api"
-	if c.Statsd_host == "" {
+	if config.ApiConfig.StatsdHost == "" {
 		//no statsd host configured, log metric and move along...move along...
 		log.Printf("[INFO] metric : %s,uri_path=%s,response_code=%s,method=%s", measurement, uri,
 			strconv.Itoa(responseCode),method)
-		return err
+		return
 	}
 
 	tags := statsd.Tags("uri_path", uri, "response_code", strconv.Itoa(responseCode), "method", method)
-	addrOpt := statsd.Address(c.Statsd_host)
+	addrOpt := statsd.Address(config.ApiConfig.StatsdHost)
 	fmtOpt := statsd.TagsFormat(statsd.InfluxDB)
 	client, err := statsd.New(addrOpt,fmtOpt,tags)
 	if err != nil {
@@ -44,18 +37,13 @@ func SendMetric(uri string, responseCode int, method string ) error{
 	defer client.Close()
 
 	client.Increment(measurement)
-	return err
+	return
 }
 
 func SendSlack (message string){
-	c, err := ReadConfig()
-	if err != nil{
-		log.Printf("[ERROR] slack alert : %s", err)
-		return
-	}
-
-	if c.SlackWebhook == ""{
+	if config.ApiConfig.SlackWebhook == ""{
 		//do nothing if not defined
+		log.Printf("[INFO] slack : no webhook configured")
 		return
 	}
 
@@ -66,7 +54,7 @@ func SendSlack (message string){
 
 	reqBody, err := json.Marshal(msgBody)
 
-	resp, err := http.Post(c.SlackWebhook, "application/json", bytes.NewReader(reqBody))
+	resp, err := http.Post(config.ApiConfig.SlackWebhook, "application/json", bytes.NewReader(reqBody))
 	if err != nil{
 		log.Printf("[ERROR] slack alert : %s", err)
 	}
@@ -106,47 +94,6 @@ func StrToUint8(number string)(uint8, error){
 	}
 	uInt := uint8(rawInt) //convert the int to uint8
 	return uInt, nil
-}
-
-func CheckEnabled(function string)(err error){
-	c, err := ReadConfig()
-	if err != nil{
-		return err
-	}
-
-	enabled := false
-	found := false
-
-	for _, f := range c.Functions{
-		if f.Name == function{
-			if f.Enabled{
-				enabled = true
-				found = true
-			}
-		}
-	}
-	if !found{
-		return fmt.Errorf("function name "+function+" was not found in config file")
-	}
-	if !enabled{
-		return fmt.Errorf("API function disabled")
-	}
-
-	return nil
-}
-
-func ReadConfig()(Config, error){
-	c := Config{}
-	config, err := ioutil.ReadFile(APPDIR+CONFIG)
-	if err != nil {
-		return c, err
-	}
-
-	if err := json.Unmarshal(config, &c); err != nil{
-		errorMsg := fmt.Errorf("unable to read Config file")
-		return c, errorMsg
-	}
-	return c, nil
 }
 
 func GetHostname()(hostname string){
