@@ -5,3 +5,4 @@
 sslCert/
 *txt
 .DS_Store
+.couscous/

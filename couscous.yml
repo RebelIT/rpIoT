@@ -1,0 +1,42 @@
+template:
+    # url: https://github.com/CouscousPHP/Template-ReadTheDocs
+    url: https://github.com/CouscousPHP/Template-Dark
+
+baseUrl: http://rebelit.github.io/rpIoT
+# github:
+#     user: RebelIT
+#     repo: rpIoT
+
+title: rpIoT
+subTitle: Raspberry Pi IoT device documentation
+
+# The left menu bar
+menu:
+    sections:
+        confAndInst:
+            name: Configuration and Installation
+            items:
+                configuration:
+                  text: Configuration Options
+                  relativeUrl: doco/configuration/
+                installation:
+                  text: Deploy it
+                  relativeUrl: doco/installation/
+        usage:
+            name: Usage
+            items:
+                auth:
+                  text: Authentication
+                  relativeUrl: doco/usage/auth/
+                endpoints:
+                  text: Endpoints
+                  relativeUrl: doco/usage/endpoints/
+        notes:
+            name: Notables
+            items:
+                supportingItems:
+                  text: Add-ons and other apps
+                  relativeUrl: doco/supportingItems/
+                currentProject:
+                  text: Use Cases
+                  relativeUrl: doco/currentProject/
