@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.54.0" />
+
+    
+    
+    
+
+<title>Using the Endpoints • rpIoT</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using the Endpoints"/>
+<meta name="twitter:description" content="Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  API endpoints  Base endpoints  GET /api/alive - return a json status if the API is alive GET /api/system - return a json status if the running system stats  Power Control endpoints
+ POST /api/power/{acton} - return a json status if the API is alive
+actions: reboot - Reboots the Raspberry Pi   Power Control endpoints"/>
+
+<meta property="og:title" content="Using the Endpoints" />
+<meta property="og:description" content="Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  API endpoints  Base endpoints  GET /api/alive - return a json status if the API is alive GET /api/system - return a json status if the running system stats  Power Control endpoints
+ POST /api/power/{acton} - return a json status if the API is alive
+actions: reboot - Reboots the Raspberry Pi   Power Control endpoints" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rebelit.github.io/rpIoT/usage/usingtheendpoints/" />
+<meta property="og:site_name" content="rpIoT API Documentation" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/rpIoT/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+
+
+<link rel="stylesheet" href="/rpIoT/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://rebelit.github.io/rpIoT/">rpIoT</a>
+      </span>
+      
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">rpIoT</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/rpIoT/home/">
+						<span>What Is This?</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/configuration/">
+						<span>API Configuration</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/installation/">
+						<span>Installation</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/usage/">
+						<span>Using the API</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/addons/">
+						<span>Add-Ons</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/aboutme/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/posts/">
+						<span>Release Notes</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	
+	
+	<a href="https://github.com/RebelIT" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019 htr3n
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+  
+</div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>Using the Endpoints</h1>
+    
+    
+<div class="post__meta">
+    
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 2 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    
+
+<h2 id="headers">Headers</h2>
+
+<ul>
+<li><code>Content-Type:Application/json</code></li>
+<li><code>Accept:Application/json</code></li>
+<li>auth - see auth doco if auth is enabled</li>
+</ul>
+
+<h2 id="api-endpoints">API endpoints</h2>
+
+<ul>
+<li><strong>Base endpoints</strong>
+
+<ul>
+<li>GET <code>/api/alive</code> - <em>return a json status if the API is alive</em></li>
+<li>GET <code>/api/system</code> - <em>return a json status if the running system stats</em></li>
+</ul></li>
+
+<li><p><strong>Power Control endpoints</strong></p>
+
+<ul>
+<li><p>POST <code>/api/power/{acton}</code> - <em>return a json status if the API is alive</em></p>
+
+<pre><code>actions:
+reboot - Reboots the Raspberry Pi
+</code></pre></li>
+</ul></li>
+
+<li><p><strong>Power Control endpoints</strong></p>
+
+<ul>
+<li>GET <code>/api/apt</code> - <em>return a json response of the var/log/apt/history.log</em></li>
+
+<li><p>POST <code>/api/apt/{action}</code> - <em>return a json response of the var/log/apt/history.log</em></p>
+
+<pre><code>actions:
+update - performs a local apt-get update
+upgrade - performs a local apt-get upgrade
+</code></pre></li>
+
+<li><p>POST <code>/api/apt/{package}/{action}</code> - <em>initiates apt-get to install a package</em></p>
+
+<pre><code>package:
+any package name in your apt repos, reddis, vim, apache, etc...
+actions:
+install - performs an apt-get install {package}
+remove - performs an apt-get remove {package}
+</code></pre></li>
+</ul></li>
+
+<li><p><strong>Service Control endpoints</strong></p>
+
+<ul>
+<li><p>POST <code>/api/service/{service}/{action}</code> - <em>return a json response of the var/log/apt/history.log</em></p>
+
+<pre><code>service:
+any installed systemd service name
+actions:
+start - performs a systemctl start {service}
+stop - performs a systemctl stop {service}
+restart - performs a systemctl restart {service}
+</code></pre></li>
+</ul></li>
+
+<li><p><strong>HDMI Control endpoints</strong></p>
+
+<ul>
+<li>GET <code>/api/display</code> - <em>return a status of the HDMI display power 0-off | 1-on</em></li>
+
+<li><p>POST <code>/api/display/{action}</code> - <em>turns the HDMI power on or off</em></p>
+
+<pre><code>actions:
+on - turns on hdmi power
+off - turns off hdmi power
+</code></pre></li>
+</ul></li>
+
+<li><p><strong>GPOI Pin Control endpoints</strong></p>
+
+<ul>
+<li>POST <code>/api/gpio/{number}/pullup</code> - <em>performs a pin# pullup</em></li>
+<li>POST <code>/api/gpio/{number}/pulldown</code> - <em>performs a pin# pulldown</em></li>
+
+<li><p>POST <code>/api/gpio/{number}/toggle</code> - <em>performs a pin# toggle</em></p>
+
+<pre><code>numbers:
+any valid GPIO pin # (2-25)
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h2 id="http-return-body">HTTP Return Body</h2>
+
+<ul>
+<li>Http codes used: <code>OK | BadRequest | Forbidden | InternalServerError | Unauthorized</code></li>
+
+<li><p>All endpoints return a json response on 200 - OK success</p>
+
+<ul>
+<li><p>example display power on return:</p>
+
+<pre><code>{
+    &quot;namespace&quot;: &quot;/api/display/on&quot;,
+    &quot;message&quot;: &quot;display_power=1&quot;,
+    &quot;data&quot;: null
+}
+</code></pre></li>
+
+<li><p>example get system stats return:</p>
+
+<pre><code>{
+    &quot;host&quot;: {
+        &quot;uptime&quot;: &quot;151296&quot;,
+        &quot;kernel_version&quot;: &quot;4.14.98-v7+&quot;,
+        &quot;platform&quot;: &quot;raspbian&quot;,
+        &quot;platform_ver&quot;: &quot;9.8&quot;,
+        &quot;boottime&quot;: &quot;1552535567&quot;,
+        &quot;hostname&quot;: &quot;piCalendar&quot;,
+        &quot;host_id&quot;: &quot;c850aa6c-693f-4f48-9a3e-1cc068f7b2e0&quot;
+    },
+    &quot;cpu&quot;: {
+        &quot;cpu_stats&quot;: [
+            {
+                &quot;cpu_num&quot;: 0,
+                &quot;mhz&quot;: 0,
+                &quot;model_name&quot;: &quot;ARMv7 Processor rev 4 (v7l)&quot;,
+                &quot;cores&quot;: 1,
+                &quot;util_percent&quot;: 1200
+            },
+            {
+                &quot;cpu_num&quot;: 1,
+                &quot;mhz&quot;: 0,
+                &quot;model_name&quot;: &quot;ARMv7 Processor rev 4 (v7l)&quot;,
+                &quot;cores&quot;: 1,
+                &quot;util_percent&quot;: 1200
+            },
+            {
+                &quot;cpu_num&quot;: 2,
+                &quot;mhz&quot;: 0,
+                &quot;model_name&quot;: &quot;ARMv7 Processor rev 4 (v7l)&quot;,
+                &quot;cores&quot;: 1,
+                &quot;util_percent&quot;: 1200
+            },
+            {
+                &quot;cpu_num&quot;: 3,
+                &quot;mhz&quot;: 0,
+                &quot;model_name&quot;: &quot;ARMv7 Processor rev 4 (v7l)&quot;,
+                &quot;cores&quot;: 1,
+                &quot;util_percent&quot;: 1200
+            }
+        ]
+    },
+    &quot;net&quot;: {
+        &quot;total&quot;: &quot;968077312&quot;,
+        &quot;free&quot;: &quot;197435392&quot;
+    },
+    &quot;disk&quot;: {
+        &quot;total&quot;: 13776019456,
+        &quot;used&quot;: 4469084160,
+        &quot;free&quot;: 8583548928
+    }
+}
+</code></pre></li>
+</ul></li>
+</ul>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    
+    <a href="/rpIoT/usage/authentication/" class="navigation-next">
+      <span class="navigation-tittle">Authentication and Security</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

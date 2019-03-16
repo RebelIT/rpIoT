@@ -5,3 +5,11 @@
 sslCert/
 *txt
 .DS_Store
+/public
+/themes
+content/
+layouts/
+resources/
+static/
+themes/
+config.toml
