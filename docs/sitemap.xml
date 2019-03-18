@@ -3,80 +3,80 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/posts/v1.0.0/</loc>
+    <loc>http://rebelit.github.io/rpIoT/posts/v1.0.0/</loc>
     <lastmod>2019-03-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/aboutme/</loc>
+    <loc>http://rebelit.github.io/rpIoT/aboutme/</loc>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/usage/authentication/</loc>
+    <loc>http://rebelit.github.io/rpIoT/usage/authentication/</loc>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/categories/</loc>
+    <loc>http://rebelit.github.io/rpIoT/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/configuration/</loc>
+    <loc>http://rebelit.github.io/rpIoT/configuration/</loc>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/installation/</loc>
+    <loc>http://rebelit.github.io/rpIoT/installation/</loc>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/addons/</loc>
+    <loc>http://rebelit.github.io/rpIoT/addons/</loc>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/posts/</loc>
-    <lastmod>2019-03-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://rebelit.github.io/rpIoT/home/</loc>
-  </url>
-  
-  <url>
-    <loc>https://rebelit.github.io/rpIoT/categories/releasenotes/</loc>
+    <loc>http://rebelit.github.io/rpIoT/posts/</loc>
     <lastmod>2019-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/tags/rpiot/</loc>
+    <loc>http://rebelit.github.io/rpIoT/home/</loc>
+  </url>
+  
+  <url>
+    <loc>http://rebelit.github.io/rpIoT/categories/releasenotes/</loc>
     <lastmod>2019-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/tags/</loc>
+    <loc>http://rebelit.github.io/rpIoT/tags/rpiot/</loc>
     <lastmod>2019-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/usage/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://rebelit.github.io/rpIoT/usage/usingtheendpoints/</loc>
-  </url>
-  
-  <url>
-    <loc>https://rebelit.github.io/rpIoT/tags/version/</loc>
+    <loc>http://rebelit.github.io/rpIoT/tags/</loc>
     <lastmod>2019-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/</loc>
+    <loc>http://rebelit.github.io/rpIoT/usage/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://rebelit.github.io/rpIoT/usage/usingtheendpoints/</loc>
+  </url>
+  
+  <url>
+    <loc>http://rebelit.github.io/rpIoT/tags/version/</loc>
+    <lastmod>2019-03-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://rebelit.github.io/rpIoT/</loc>
     <lastmod>2019-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
