@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on rpIoT</title>
-    <link>http://rebelit.github.io/rpIoT/tags/</link>
+    <link>https://rebelit.github.io/rpIoT/tags/</link>
     <description>Recent content in Tags on rpIoT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 16 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://rebelit.github.io/rpIoT/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://rebelit.github.io/rpIoT/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Rpiot</title>
-      <link>http://rebelit.github.io/rpIoT/tags/rpiot/</link>
+      <link>https://rebelit.github.io/rpIoT/tags/rpiot/</link>
       <pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://rebelit.github.io/rpIoT/tags/rpiot/</guid>
+      <guid>https://rebelit.github.io/rpIoT/tags/rpiot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Version</title>
-      <link>http://rebelit.github.io/rpIoT/tags/version/</link>
+      <link>https://rebelit.github.io/rpIoT/tags/version/</link>
       <pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://rebelit.github.io/rpIoT/tags/version/</guid>
+      <guid>https://rebelit.github.io/rpIoT/tags/version/</guid>
       <description></description>
     </item>
     

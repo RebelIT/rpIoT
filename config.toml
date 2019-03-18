@@ -1,5 +1,5 @@
 ## Basic Configuration
-baseurl = "http://rebelit.github.io/rpIoT/"
+baseurl = "https://rebelit.github.io/rpIoT/"
 languageCode = "en"
 publishDir = "docs"
 

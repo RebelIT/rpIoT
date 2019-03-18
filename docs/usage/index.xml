@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Usages on rpIoT</title>
-    <link>http://rebelit.github.io/rpIoT/usage/</link>
+    <link>https://rebelit.github.io/rpIoT/usage/</link>
     <description>Recent content in Usages on rpIoT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-	<atom:link href="http://rebelit.github.io/rpIoT/usage/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://rebelit.github.io/rpIoT/usage/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Authentication and Security</title>
-      <link>http://rebelit.github.io/rpIoT/usage/authentication/</link>
+      <link>https://rebelit.github.io/rpIoT/usage/authentication/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://rebelit.github.io/rpIoT/usage/authentication/</guid>
+      <guid>https://rebelit.github.io/rpIoT/usage/authentication/</guid>
       <description>Authentication enabled usage If &amp;quot;auth_enabled&amp;quot;: true you must provide auth headers in each API call * Required headers for all API calls:
  X-API-User:&amp;lt;default_user config value&amp;gt; X-API-Token:&amp;lt;default_user_token config value&amp;gt;   Disabling auth &amp;quot;auth_enabled&amp;quot;: false makes your API wide open to anyone on your network.  SSL enabled usage If &amp;quot;ssl_enabled&amp;quot;: true you must place your cert and key in the install_dir directory. You can use any CA signed cert or a self signed one, as long as you have the key.</description>
     </item>
     
     <item>
       <title>Using the Endpoints</title>
-      <link>http://rebelit.github.io/rpIoT/usage/usingtheendpoints/</link>
+      <link>https://rebelit.github.io/rpIoT/usage/usingtheendpoints/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://rebelit.github.io/rpIoT/usage/usingtheendpoints/</guid>
+      <guid>https://rebelit.github.io/rpIoT/usage/usingtheendpoints/</guid>
       <description>Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  API endpoints  Base endpoints  GET /api/alive - return a json status if the API is alive GET /api/system - return a json status if the running system stats  Power Control endpoints
  POST /api/power/{acton} - return a json status if the API is alive
 actions: reboot - Reboots the Raspberry Pi   Power Control endpoints</description>
