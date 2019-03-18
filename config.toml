@@ -1,0 +1,93 @@
+## Basic Configuration
+baseurl = "http://rebelit.github.io/rpIoT/"
+languageCode = "en"
+publishDir = "docs"
+
+title = "rpIoT"
+theme = "hyde-hyde"
+
+## Hugo Built-in Features
+# disqusShortname = "your-disqus-shortname"
+# googleAnalytics = "your-google-analytics-id"
+# enableRobotsTXT = true
+
+# summarylength = 30
+
+#paginate = 5
+
+## Site Settings
+[params]
+    author = "RebelIT"
+    title = "rpIoT API Documentation"
+    # description = "..."
+    # authorimage = "/img/hugo.png"
+    dateformat = "Jan 2, 2006"
+
+    # sidebar, copyright & license
+    copyright = "htr3n"
+    license = "CC BY-SA 4.0"
+    licenseURL = "https://creativecommons.org/licenses/by-sa/4.0"
+    showBuiltWith = true
+
+    # https://highlightjs.org
+    highlightjs = true
+    highlightjsstyle = "github"
+
+    # please choose either GraphComment or Disqus or Utterances
+    #GraphCommentId = "..."
+    #UtterancesRepo = "..." # https://utteranc.es/
+    #UtterancesIssueTerm = "..." # pathname, url, title, og:title
+    #UtterancesTheme = "..." # github-light or github-dark
+
+    # Table of contents
+    #toc = none, "hugo", or "tocbot"
+
+## Social Accounts
+[params.social]
+    github = "RebelIT"
+    # instagram = "<username>"
+    # xing = "<username>"
+    # linkedin = "<username>"
+    # twitter = "<username>"
+    # facebook = "<username>"
+    # stackoverflow = "<username>"
+    # telegram = "<username>"
+    # email = "your-email@example.com"
+    # gravatar = "your-email@example.com"
+
+## Main Menu
+[[menu.main]]
+    name = "What Is This?"
+    weight = 100
+    identifier = "home"
+    url = "/home/"
+[[menu.main]]
+    name = "API Configuration"
+    weight = 200
+    identifier = "configuration"
+    url = "/configuration/"
+[[menu.main]]
+    name = "Installation"
+    identifier = "installation"
+    weight = 300
+    url = "/installation/"
+[[menu.main]]
+    name = "Using the API"
+    identifier = "usage"
+    weight = 400
+    url = "/usage/"
+[[menu.main]]
+    name = "Add-ons"
+    identifier = "addons"
+    weight = 500
+    url = "/addons/"
+[[menu.main]]
+    name = "About Me"
+    identifier = "aboutme"
+    weight = 600
+    url = "/aboutme/"
+[[menu.main]]
+    name = "Release Notes"
+    identifier = "posts"
+    weight = 700
+    url = "/posts/"

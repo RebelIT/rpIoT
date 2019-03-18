@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rpIoT</title>
+    <link>http://rebelit.github.io/rpIoT/</link>
+    <description>Recent content on rpIoT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 16 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://rebelit.github.io/rpIoT/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>v1.0.0 - Initial Release</title>
+      <link>http://rebelit.github.io/rpIoT/posts/v1.0.0/</link>
+      <pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://rebelit.github.io/rpIoT/posts/v1.0.0/</guid>
+      <description> v1.0.0  Initial release  Base functionality tested and in use.  Open Issues  </description>
+    </item>
+    
+    <item>
+      <title>About Me</title>
+      <link>http://rebelit.github.io/rpIoT/aboutme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://rebelit.github.io/rpIoT/aboutme/</guid>
+      <description>You don&amp;rsquo;t need to know more about me yet&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Authentication and Security</title>
+      <link>http://rebelit.github.io/rpIoT/usage/authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://rebelit.github.io/rpIoT/usage/authentication/</guid>
+      <description>Authentication enabled usage If &amp;quot;auth_enabled&amp;quot;: true you must provide auth headers in each API call * Required headers for all API calls:
+ X-API-User:&amp;lt;default_user config value&amp;gt; X-API-Token:&amp;lt;default_user_token config value&amp;gt;   Disabling auth &amp;quot;auth_enabled&amp;quot;: false makes your API wide open to anyone on your network.  SSL enabled usage If &amp;quot;ssl_enabled&amp;quot;: true you must place your cert and key in the install_dir directory. You can use any CA signed cert or a self signed one, as long as you have the key.</description>
+    </item>
+    
+    <item>
+      <title>Configuring the API</title>
+      <link>http://rebelit.github.io/rpIoT/configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://rebelit.github.io/rpIoT/configuration/</guid>
+      <description>Application Configs service starts up with a set of default configs set to high security. If you wish to override any of these values you must provide a -config=/path/to/api_config.json file with override values.
+ Default hard coded values
+&amp;quot;install_dir&amp;quot;: &amp;quot;/etc/api/&amp;quot; &amp;quot;api_port&amp;quot;: &amp;quot;8080&amp;quot;, &amp;quot;statsd_host&amp;quot;: &amp;quot;&amp;quot;, &amp;quot;slack_webhook&amp;quot;: &amp;quot;&amp;quot;, &amp;quot;default_user&amp;quot;: &amp;quot;admin&amp;quot;, &amp;quot;default_user_token&amp;quot;: &amp;quot;myPiApi&amp;quot;, &amp;quot;auth_enabled&amp;quot;: true, &amp;quot;ssl_enabled&amp;quot;: true, &amp;quot;ssl_cert_name&amp;quot;: &amp;quot;cert.cert&amp;quot;, &amp;quot;ssl_key_name&amp;quot;: &amp;quot;key.key&amp;quot;, &amp;quot;endpoint_power&amp;quot;: true, &amp;quot;endpoint_packages&amp;quot;: true, &amp;quot;endpoint_service&amp;quot;: true, &amp;quot;endpoint_display&amp;quot;: true, &amp;quot;endpoint_gpio&amp;quot;: true  Options breakdown</description>
+    </item>
+    
+    <item>
+      <title>Installing the API on your RaspberryPi</title>
+      <link>http://rebelit.github.io/rpIoT/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://rebelit.github.io/rpIoT/installation/</guid>
+      <description>Install via Ansible NOTE the manual setup steps  You need a working local GOLang environment for ansible to build the project Update ansible_deploy.yml with your local gopath
+gopath: &amp;quot;/Users/rebelit/go&amp;quot; goroot: &amp;quot;/usr/local/opt/go/libexec&amp;quot;  Update the ansible_host file with your DNS name or IP
+ Run it (depending on your local setup you may not need --ask-sudo-pass)
+ansible-playbook ansible_deploy.yml -i ansible_host --ask-sudo-pass   Build with Docker  Build the docker image then run it to compile the app binary.</description>
+    </item>
+    
+    <item>
+      <title>Other projects to add-on/support this</title>
+      <link>http://rebelit.github.io/rpIoT/addons/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://rebelit.github.io/rpIoT/addons/</guid>
+      <description> Telegraf for metrics  To set up a localhost statsd listener using telegraf and send metrics elsewhere (influx, prometheus, datadog) Telegraf Installation on Raspberry Pi to pull down and install an ARM based telegraf.  Grafana with Influx for viewing metrics  Grafana with InfluxDB on Raspberry Pi  </description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi IoT Device</title>
+      <link>http://rebelit.github.io/rpIoT/home/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://rebelit.github.io/rpIoT/home/</guid>
+      <description>rpIoT My configurable GOLang based API for a raspberryPi. Used for integrating/controlling rPI&amp;rsquo;s into your home automation or just for general remote management.
+ Configure the API (Configuration Options) Install the API (Deploy it) Use the API (Using this project) profit.  About this I originally built this as a home automation add-on. I have multiple rPIs around the house doing various things (wall mounted calendar, magic mirror, piHole, garage door opener, OpenSource thermostat, etc&amp;hellip;).</description>
+    </item>
+    
+    <item>
+      <title>Using the Endpoints</title>
+      <link>http://rebelit.github.io/rpIoT/usage/usingtheendpoints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://rebelit.github.io/rpIoT/usage/usingtheendpoints/</guid>
+      <description>Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  API endpoints  Base endpoints  GET /api/alive - return a json status if the API is alive GET /api/system - return a json status if the running system stats  Power Control endpoints
+ POST /api/power/{acton} - return a json status if the API is alive
+actions: reboot - Reboots the Raspberry Pi   Power Control endpoints</description>
+    </item>
+    
+  </channel>
+</rss>

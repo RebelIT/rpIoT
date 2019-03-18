@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.54.0" />
+
+    
+    
+    
+
+<title>Raspberry Pi IoT Device • rpIoT</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Raspberry Pi IoT Device"/>
+<meta name="twitter:description" content="rpIoT My configurable GOLang based API for a raspberryPi. Used for integrating/controlling rPI&rsquo;s into your home automation or just for general remote management.
+ Configure the API (Configuration Options) Install the API (Deploy it) Use the API (Using this project) profit.  About this I originally built this as a home automation add-on. I have multiple rPIs around the house doing various things (wall mounted calendar, magic mirror, piHole, garage door opener, OpenSource thermostat, etc&hellip;)."/>
+
+<meta property="og:title" content="Raspberry Pi IoT Device" />
+<meta property="og:description" content="rpIoT My configurable GOLang based API for a raspberryPi. Used for integrating/controlling rPI&rsquo;s into your home automation or just for general remote management.
+ Configure the API (Configuration Options) Install the API (Deploy it) Use the API (Using this project) profit.  About this I originally built this as a home automation add-on. I have multiple rPIs around the house doing various things (wall mounted calendar, magic mirror, piHole, garage door opener, OpenSource thermostat, etc&hellip;)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://rebelit.github.io/rpIoT/home/" />
+<meta property="og:site_name" content="rpIoT API Documentation" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/rpIoT/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+
+
+<link rel="stylesheet" href="/rpIoT/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="http://rebelit.github.io/rpIoT/">rpIoT</a>
+      </span>
+      
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">rpIoT</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/rpIoT/home/">
+						<span>What Is This?</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/configuration/">
+						<span>API Configuration</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/installation/">
+						<span>Installation</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/usage/">
+						<span>Using the API</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/addons/">
+						<span>Add-Ons</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/aboutme/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/rpIoT/posts/">
+						<span>Release Notes</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	
+	
+	<a href="https://github.com/RebelIT" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019 htr3n
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+  
+</div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>Raspberry Pi IoT Device</h1>
+    
+    
+<div class="post__meta">
+    
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 2 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    
+
+<h2 id="rpiot-https-github-com-rebelit-rpiot"><a href="https://github.com/RebelIT/rpIoT">rpIoT</a></h2>
+
+<p>My configurable GOLang based API for a raspberryPi. Used for integrating/controlling rPI&rsquo;s into your home automation or just for general remote management.</p>
+
+<ol>
+<li>Configure the API (Configuration Options)</li>
+<li>Install the API (Deploy it)</li>
+<li>Use the API (Using this project)</li>
+<li>profit.</li>
+</ol>
+
+<hr />
+
+<h2 id="about-this">About this</h2>
+
+<p>I originally built this as a home automation add-on.  I have multiple rPIs around the house
+doing various things (wall mounted calendar, magic mirror, piHole, garage door opener, OpenSource thermostat, etc&hellip;).  Having an API to control these things was a must.   While all of these use cases
+have not yet been built into this API they will be soon with a full range of endpoints.</p>
+
+<p>I tried to make this generic enough so you can integrate it into any home automation
+system.  for example, OpenHAB custom http device for your smart home to control your
+rPI that is GPIO hard wired to something (garage door).</p>
+
+<p>My use case is a custom home automation platform (<a href="https://github.com/RebelIT/gome">gome</a> (go + home)) that I decided to play around with while I learned a new language,  I fell into GOLang at work, and decided to put what I learned to use at home too and further my knowledge.</p>
+
+<p>I&rsquo;m hoping others can find this useful and contribute as i start to formalize this
+project.  This Doco is a start :)</p>
+
+<p>Happy automating!
+&ndash;RebelIT</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>
