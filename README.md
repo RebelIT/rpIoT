@@ -1,6 +1,7 @@
 # rpIoT
 raspberryPi IOT device API
-[new documentation site](https://rebelit.github.io/rpIoT/)
+
+## [new documentation site](https://rebelit.github.io/rpIoT/)
 
 ## About this:
 * [Read the Docs](https://rebelit.github.io/rpIoT/)
