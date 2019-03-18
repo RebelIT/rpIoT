@@ -1,0 +1,3 @@
+[submodule "RebelIT.github.io"]
+	path = RebelIT.github.io
+	url = git@github.com:RebelIT/RebelIT.github.io.git
