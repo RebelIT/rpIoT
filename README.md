@@ -1,15 +1,14 @@
 # rpIoT
 raspberryPi IOT device API
 
-## [new documentation site](https://rebelit.github.io/rpIoT/)
+## [Read the Docs](https://rebelit.github.io/rpIoT/)
 
 ## About this:
-* [Read the Docs](https://rebelit.github.io/rpIoT/)
-
 A configurable API for all my raspberryPi IoT devices around the house. Toggle functions on and off in the
 configuration file before starting the service.  Used for integrating/controlling rPI's into your home automation.
 
 ## Deploying it to a raspberryPi (ansible & go):
+* refer to [Read the Docs](https://rebelit.github.io/rpIoT/) for a more in-depth install and usage.
 * You need a working local GOLang environment for ansible to build the project
 * Update api_config.json
     * true/false values for what endpoints you want enabled
