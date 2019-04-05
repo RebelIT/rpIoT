@@ -2,6 +2,7 @@ package web
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/rebelit/rpIoT/actions"
 	"github.com/rebelit/rpIoT/common"
@@ -9,6 +10,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 //Http Generic Response functions
@@ -329,5 +331,40 @@ func gpioPullUp (w http.ResponseWriter, r *http.Request) {
 	}
 
 	resp.Message = strconv.Itoa(int(pinState)) //Returns the pin readout
+	returnOk(w,r,resp)
+}
+
+func gpioDepress (w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	pin := vars["number"]
+	ms := vars["millisecond"]
+	pressTime, _ := strconv.Atoi(ms)
+	toggleTimes := 2
+
+	resp := Response{}
+	resp.Namespace = string(r.URL.Path)
+
+
+	if !config.ApiConfig.EndpointGpio{
+		returnDisabled(w,r,resp)
+		return
+	}
+
+	if err := actions.ValidateGpioPin(pin); err != nil{
+		returnBad(w,r,resp, err)
+		return
+	}
+
+	for i := 1;  i<=toggleTimes; i++ {
+
+		if err := actions.GpioToggle(pin); err != nil{
+			returnInternalError(w,r,resp, err)
+			return
+		}
+
+		time.Sleep(time.Duration(pressTime) * time.Millisecond)
+	}
+
+	resp.Message = fmt.Sprintf("gpio %s button pressed for %d ms", pin, pressTime)
 	returnOk(w,r,resp)
 }
