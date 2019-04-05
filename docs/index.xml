@@ -6,10 +6,19 @@
     <description>Recent content on rpIoT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 16 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rebelit.github.io/rpIoT/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>v1.0.1  - Enhancement</title>
+      <link>https://rebelit.github.io/rpIoT/posts/v1.0.1/</link>
+      <pubDate>Thu, 04 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://rebelit.github.io/rpIoT/posts/v1.0.1/</guid>
+      <description> v1.0.1  Enhancement: new gpio depress button endpoint  added new /api/gpio/{number}/depress/{milliseconds} endpoint to simulate pressing a button  Issues  </description>
+    </item>
     
     <item>
       <title>v1.0.0 - Initial Release</title>
