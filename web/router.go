@@ -38,6 +38,7 @@ var routes = Routes{
 	Route{"pinControl", "POST", "/api/gpio/{number}/pullup", gpioPullUp},
 	Route{"pinControl", "POST", "/api/gpio/{number}/pulldown", gpioPullDown},
 	Route{"pinControl", "POST", "/api/gpio/{number}/toggle", gpioSwitch},
+	Route{"pinControl", "POST", "/api/gpio/{number}/depress/{millisecond}", gpioDepress},
 }
 
 func AuthMiddleware(next http.Handler) http.Handler {

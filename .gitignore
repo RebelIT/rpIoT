@@ -5,3 +5,5 @@
 sslCert/
 *txt
 .DS_Store
+*ansible_deploy_testing.yml
+*ansible_host_testing
