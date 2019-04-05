@@ -65,10 +65,13 @@ title = "Using the Endpoints"
   * POST `/api/gpio/{number}/pullup` - _performs a pin# pullup_
   * POST `/api/gpio/{number}/pulldown` - _performs a pin# pulldown_
   * POST `/api/gpio/{number}/toggle` - _performs a pin# toggle_
-
+  * POST `/api/gpio/{number}/depress/{milliseconds}` - _simulates a button press (toggle x2 for n milliseconds)_
+     
         ```
-        numbers:
-        any valid GPIO pin # (2-25)
+        numbers - any valid GPIO pin # (2-25)
+        milliseconds - any measurement of time in ms. 
+             (200-300 milliseconds usually suffice)
+        
         ```
 
 ## HTTP Return Body

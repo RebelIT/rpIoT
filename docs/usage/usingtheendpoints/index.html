@@ -294,11 +294,14 @@ off - turns off hdmi power
 <ul>
 <li>POST <code>/api/gpio/{number}/pullup</code> - <em>performs a pin# pullup</em></li>
 <li>POST <code>/api/gpio/{number}/pulldown</code> - <em>performs a pin# pulldown</em></li>
+<li>POST <code>/api/gpio/{number}/toggle</code> - <em>performs a pin# toggle</em></li>
 
-<li><p>POST <code>/api/gpio/{number}/toggle</code> - <em>performs a pin# toggle</em></p>
+<li><p>POST <code>/api/gpio/{number}/depress/{milliseconds}</code> - <em>simulates a button press (toggle x2 for n milliseconds)</em></p>
 
-<pre><code>numbers:
-any valid GPIO pin # (2-25)
+<pre><code>numbers - any valid GPIO pin # (2-25)
+milliseconds - any measurement of time in ms. 
+     (200-300 milliseconds usually suffice)
+        
 </code></pre></li>
 </ul></li>
 </ul>
