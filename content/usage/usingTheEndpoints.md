@@ -41,6 +41,13 @@ title = "Using the Endpoints"
         ```
 
 * **Service Control endpoints**
+  * GET `/api/service/{service}` - _returns the status of a service (active/inactive)_
+ 
+        ```
+        service:
+        any installed systemd service name
+        ``` 
+        
   * POST `/api/service/{service}/{action}` - _return a json response of the var/log/apt/history.log_
 
         ```

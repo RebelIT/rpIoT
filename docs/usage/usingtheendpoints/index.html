@@ -266,6 +266,12 @@ remove - performs an apt-get remove {package}
 <li><p><strong>Service Control endpoints</strong></p>
 
 <ul>
+<li><p>GET <code>/api/service/{service}</code> - <em>returns the status of a service (active/inactive)</em></p>
+
+<pre><code>service:
+any installed systemd service name
+</code></pre></li>
+
 <li><p>POST <code>/api/service/{service}/{action}</code> - <em>return a json response of the var/log/apt/history.log</em></p>
 
 <pre><code>service:
