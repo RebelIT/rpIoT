@@ -17,9 +17,10 @@ title = "Using the Endpoints"
         ```
         actions:
         reboot - Reboots the Raspberry Pi
+        shutdown - performs a graceful system shutdown
         ```
 
-* **Power Control endpoints**
+* **Package manager endpoints**
   * GET `/api/apt` - _return a json response of the var/log/apt/history.log_
   * POST `/api/apt/{action}` - _return a json response of the var/log/apt/history.log_
 
