@@ -73,7 +73,6 @@ func Cmd(cmdName string, args []string) (cmdOut string, err error) {
 	if err != nil {
 		return string(out), err
 	}
-
 	fmtOut := strings.Replace(string(out), "\n", "", -1)
 
 	return fmtOut,nil

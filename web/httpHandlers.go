@@ -122,6 +122,24 @@ func getUpdates (w http.ResponseWriter, r *http.Request){	//Returns everything i
 	returnOk(w,r,resp)
 }
 
+func getService(w http.ResponseWriter, r *http.Request){
+	vars := mux.Vars(r)
+	svc := vars["service"]
+
+	resp := Response{}
+	resp.Namespace = r.URL.Path
+
+	status, err := actions.GetService(svc)
+	if err != nil{
+		returnInternalError(w,r,resp, err)
+		return
+	}
+
+	resp.Message = status
+	returnOk(w,r,resp)
+	return
+}
+
 func powerAction (w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	action := vars["action"]
