@@ -7,6 +7,26 @@ import (
 	"strconv"
 )
 
+func GpioStatus() (pinStates Gpio, error error){
+	pinMap := Gpio{}
+
+	if err := rpio.Open(); err != nil {
+		return Gpio{}, err
+	}
+	defer rpio.Close()
+
+	for i := 2; i <= 26; i++ {
+		p := Pin{}
+
+		pin := rpio.Pin(uint8(i))
+		p.PinNum = strconv.Itoa(i)
+		p.State = int(pin.Read())
+		pinMap.Pins = append(pinMap.Pins, p)
+	}
+
+	return pinMap,nil
+}
+
 func GpioToggle(number string) error{
 	pinNum, err := common.StrToUint8(number)
 	if err != nil{
@@ -69,7 +89,7 @@ func ValidateGpioPin(pin string) error{
 		return fmt.Errorf("%d is not a number", i)
 	}
 
-	if err := common.InRange(i, 2, 26); err != nil{
+	if err := common.InRange(i, 2, 29); err != nil{
 		return err
 	}
 

@@ -140,6 +140,25 @@ func getService(w http.ResponseWriter, r *http.Request){
 	return
 }
 
+func getGpioState (w http.ResponseWriter, r *http.Request) {
+	states, err := actions.GpioStatus()
+	if err != nil{
+		resp := Response{}
+		resp.Namespace = string(r.URL.Path)
+		returnInternalError(w,r,resp, err)
+		return
+	}
+
+	code := http.StatusOK
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(code)
+
+	if err := json.NewEncoder(w).Encode(states); err != nil {
+		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
+	}
+}
+
 func powerAction (w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	action := vars["action"]

@@ -36,6 +36,7 @@ var routes = Routes{
 	Route{"serviceControl", "POST", "/api/service/{service}/{action}", serviceAction},
 	Route{"hdmiControl", "GET", "/api/display", displayGet},
 	Route{"hdmiControl", "POST", "/api/display/{action}", displayAction},
+	Route{"pinControl", "GET", "/api/gpio", getGpioState},
 	Route{"pinControl", "POST", "/api/gpio/{number}/pullup", gpioPullUp},
 	Route{"pinControl", "POST", "/api/gpio/{number}/pulldown", gpioPullDown},
 	Route{"pinControl", "POST", "/api/gpio/{number}/toggle", gpioSwitch},

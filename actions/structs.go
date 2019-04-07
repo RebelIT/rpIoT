@@ -39,3 +39,12 @@ type DiskInfo struct{
 	Used 	uint64 `json:"used"`
 	Free	uint64 `json:"free"`
 }
+
+type Gpio struct {
+	Pins	[]Pin `json:"pins"`
+}
+
+type Pin struct{
+	PinNum 	string `json:"pin_num"`
+	State 	int `json:"state"`
+}
