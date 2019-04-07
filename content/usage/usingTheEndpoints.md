@@ -70,6 +70,21 @@ title = "Using the Endpoints"
         ```
 
 * **GPOI Pin Control endpoints**
+  * GET `/api/gpio` - _gets the state of each GPIO pin_
+        ```
+        {
+            "pins": [
+                {
+                    "pin_num": "2",
+                    "state": 0
+                },
+                {
+                    "pin_num": "3",
+                    "state": 1
+                },
+                ...       
+        ```
+        
   * POST `/api/gpio/{number}/pullup` - _performs a pin# pullup_
   * POST `/api/gpio/{number}/pulldown` - _performs a pin# pulldown_
   * POST `/api/gpio/{number}/toggle` - _performs a pin# toggle_
