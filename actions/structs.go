@@ -1,5 +1,7 @@
 package actions
 
+import "github.com/stianeikeland/go-rpio"
+
 type Sysinfo struct{
 	Host 	HostInfo `json:"host"`
 	Cpu 	CpuInfo `json:"cpu"`
@@ -40,11 +42,17 @@ type DiskInfo struct{
 	Free	uint64 `json:"free"`
 }
 
-type Gpio struct {
+//GPIO pin
+type GpioStates struct {
 	Pins	[]Pin `json:"pins"`
 }
 
 type Pin struct{
-	PinNum 	string `json:"pin_num"`
-	State 	int `json:"state"`
+	BcmPin	int `json:"bcm_pin"`
+	State 	rpio.State `json:"state"`
+}
+
+//HDMI display
+type Display struct{
+	HdmiState	int `json:"hdmi_state"`
 }

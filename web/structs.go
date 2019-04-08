@@ -19,3 +19,7 @@ type Response struct{
 	Message		string		`json:"message"`
 	Data		[]string 	`json:"data"`
 }
+
+type ResponseError struct{
+	Error 	string `json:"error"`
+}

@@ -2,15 +2,12 @@ package web
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/rebelit/rpIoT/actions"
 	"github.com/rebelit/rpIoT/common"
 	"github.com/rebelit/rpIoT/config"
 	"log"
 	"net/http"
-	"strconv"
-	"time"
 )
 
 //Http Generic Response functions
@@ -140,25 +137,6 @@ func getService(w http.ResponseWriter, r *http.Request){
 	return
 }
 
-func getGpioState (w http.ResponseWriter, r *http.Request) {
-	states, err := actions.GpioStatus()
-	if err != nil{
-		resp := Response{}
-		resp.Namespace = string(r.URL.Path)
-		returnInternalError(w,r,resp, err)
-		return
-	}
-
-	code := http.StatusOK
-
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(code)
-
-	if err := json.NewEncoder(w).Encode(states); err != nil {
-		log.Printf("[ERROR] %s : %s\n", r.URL.Path, err)
-	}
-}
-
 func powerAction (w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	action := vars["action"]
@@ -246,162 +224,5 @@ func serviceAction (w http.ResponseWriter, r *http.Request) {
 	}
 
 	resp.Message = cmdOut
-	returnOk(w,r,resp)
-}
-
-func displayGet (w http.ResponseWriter, r *http.Request) {
-	resp := Response{}
-	resp.Namespace = string(r.URL.Path)
-
-	if !config.ApiConfig.EndpointDisplay{
-		returnDisabled(w,r,resp)
-		return
-	}
-
-	pwrState, err := actions.GetHdmiPower()
-	if err != nil{
-		returnInternalError(w,r,resp, err)
-		return
-	}
-
-	resp.Message = pwrState
-	returnOk(w,r,resp)
-}
-
-func displayAction (w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	action := vars["action"]
-
-	resp := Response{}
-	resp.Namespace = string(r.URL.Path)
-
-	if !config.ApiConfig.EndpointDisplay{
-		returnDisabled(w,r,resp)
-		return
-	}
-
-	cmdOut, err := actions.HdmiPower(action)
-	if err != nil{
-		returnInternalError(w,r,resp, err)
-		return
-	}
-
-	resp.Message = cmdOut
-	returnOk(w,r,resp)
-}
-
-func gpioSwitch (w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	pin := vars["number"]
-
-	resp := Response{}
-	resp.Namespace = string(r.URL.Path)
-
-
-	if !config.ApiConfig.EndpointGpio{
-		returnDisabled(w,r,resp)
-		return
-	}
-
-	if err := actions.ValidateGpioPin(pin); err != nil{
-		returnBad(w,r,resp, err)
-		return
-	}
-
-	if err := actions.GpioToggle(pin); err != nil{
-		returnInternalError(w,r,resp, err)
-		return
-	}
-
-	resp.Message = "success"
-	returnOk(w,r,resp)
-}
-
-func gpioPullDown (w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	pin := vars["number"]
-
-	resp := Response{}
-	resp.Namespace = string(r.URL.Path)
-
-	if !config.ApiConfig.EndpointGpio{
-		returnDisabled(w,r,resp)
-		return
-	}
-
-	if err := actions.ValidateGpioPin(pin); err != nil{
-		returnBad(w,r,resp, err)
-		return
-	}
-
-	pinState, err := actions.GpioDown(pin)
-	if err != nil{
-		returnInternalError(w,r,resp, err)
-		return
-	}
-
-	resp.Message = strconv.Itoa(int(pinState)) //Returns the pin readout
-	returnOk(w,r,resp)
-}
-
-func gpioPullUp (w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	pin := vars["number"]
-
-	resp := Response{}
-	resp.Namespace = string(r.URL.Path)
-
-	if !config.ApiConfig.EndpointGpio{
-		returnDisabled(w,r,resp)
-		return
-	}
-
-	if err := actions.ValidateGpioPin(pin); err != nil{
-		returnBad(w,r,resp, err)
-		return
-	}
-
-	pinState, err := actions.GpioUp(pin)
-	if err != nil{
-		returnInternalError(w,r,resp, err)
-		return
-	}
-
-	resp.Message = strconv.Itoa(int(pinState)) //Returns the pin readout
-	returnOk(w,r,resp)
-}
-
-func gpioDepress (w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	pin := vars["number"]
-	ms := vars["millisecond"]
-	pressTime, _ := strconv.Atoi(ms)
-	toggleTimes := 2
-
-	resp := Response{}
-	resp.Namespace = string(r.URL.Path)
-
-
-	if !config.ApiConfig.EndpointGpio{
-		returnDisabled(w,r,resp)
-		return
-	}
-
-	if err := actions.ValidateGpioPin(pin); err != nil{
-		returnBad(w,r,resp, err)
-		return
-	}
-
-	for i := 1;  i<=toggleTimes; i++ {
-
-		if err := actions.GpioToggle(pin); err != nil{
-			returnInternalError(w,r,resp, err)
-			return
-		}
-
-		time.Sleep(time.Duration(pressTime) * time.Millisecond)
-	}
-
-	resp.Message = fmt.Sprintf("gpio %s button pressed for %d ms", pin, pressTime)
 	returnOk(w,r,resp)
 }

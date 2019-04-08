@@ -95,6 +95,11 @@ func StrToUint8(number string)(uint8, error){
 	return uInt, nil
 }
 
+func StrToInt(str string)(number int){
+	p, _ := strconv.Atoi(str)
+	return p
+}
+
 func GetHostname()(hostname string){
 	host, err := os.Hostname()
 	if err != nil{

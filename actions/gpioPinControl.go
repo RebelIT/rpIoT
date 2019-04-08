@@ -1,17 +1,30 @@
 package actions
 
 import (
-	"fmt"
 	"github.com/rebelit/rpIoT/common"
 	"github.com/stianeikeland/go-rpio"
-	"strconv"
 )
 
-func GpioStatus() (pinStates Gpio, error error){
-	pinMap := Gpio{}
+func GpioStatus(number int) (pinState Pin, error error){
+	if err := rpio.Open(); err != nil {
+		return Pin{}, err
+	}
+	defer rpio.Close()
+
+	pin := rpio.Pin(uint8(number))
+
+	state := Pin{}
+	state.BcmPin = number
+	state.State = pin.Read()
+
+	return state, nil
+}
+
+func GpioAllStatus() (pinStates GpioStates, error error){
+	pinMap := GpioStates{}
 
 	if err := rpio.Open(); err != nil {
-		return Gpio{}, err
+		return GpioStates{}, err
 	}
 	defer rpio.Close()
 
@@ -19,77 +32,66 @@ func GpioStatus() (pinStates Gpio, error error){
 		p := Pin{}
 
 		pin := rpio.Pin(uint8(i))
-		p.PinNum = strconv.Itoa(i)
-		p.State = int(pin.Read())
+		p.BcmPin = i
+		p.State = pin.Read()
 		pinMap.Pins = append(pinMap.Pins, p)
 	}
 
 	return pinMap,nil
 }
 
-func GpioToggle(number string) error{
-	pinNum, err := common.StrToUint8(number)
-	if err != nil{
-		return err
-	}
+func GpioToggle(number int) (pinState Pin, error error){
 	if err := rpio.Open(); err != nil {
-		return err
+		return Pin{},err
 	}
 	defer rpio.Close()
 
-	pin := rpio.Pin(pinNum)
-
+	pin := rpio.Pin(uint8(number))
 	pin.Output()
-
 	pin.Toggle()
 
-	return nil
+	state := Pin{}
+	state.BcmPin = number
+	state.State = pin.Read()
+
+	return state, nil
 }
 
-func GpioUp(number string) (pinState rpio.State, err error){
-	pinNum, err := common.StrToUint8(number)
-	if err != nil{
-		return 0, err
-	}
+func GpioUp(number int) (pinState Pin, err error){
 	if err := rpio.Open(); err != nil {
-		return 0, err
+		return Pin{}, err
 	}
 	defer rpio.Close()
 
-	pin := rpio.Pin(pinNum)
-
+	pin := rpio.Pin(uint8(number))
 	pin.PullUp()
-	state := pin.Read()
+
+	state := Pin{}
+	state.BcmPin = number
+	state.State = pin.Read()
 
 	return state, nil
 }
 
-func GpioDown(number string) (pinState rpio.State, err error){
-	pinNum, err := common.StrToUint8(number)
-	if err != nil{
-		return 0, err
-	}
+func GpioDown(number int) (pinState Pin, err error){
 	if err := rpio.Open(); err != nil {
-		return 0, err
+		return Pin{}, err
 	}
 	defer rpio.Close()
 
-	pin := rpio.Pin(pinNum)
-
+	pin := rpio.Pin(uint8(number))
 	pin.PullDown()
-	state := pin.Read()
+
+	state := Pin{}
+	state.BcmPin = number
+	state.State = pin.Read()
 
 	return state, nil
 }
 
-func ValidateGpioPin(pin string) error{
+func ValidateGpioPin(pin int) error{
 	//26 max pins to control
-	i, err := strconv.Atoi(pin)
-	if err != nil{
-		return fmt.Errorf("%d is not a number", i)
-	}
-
-	if err := common.InRange(i, 2, 29); err != nil{
+	if err := common.InRange(pin, 2, 29); err != nil{
 		return err
 	}
 

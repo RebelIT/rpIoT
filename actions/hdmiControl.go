@@ -6,31 +6,37 @@ import (
 	"strings"
 )
 
-func HdmiPower(action string)(cmdResp string, err error){
-	state, err := validateDisplayAction(action)
+func HdmiToggleState(action string)(displayState Display, err error){
+	suggestedState, err := validateDisplayAction(action)
 	if err != nil{
-		return "", err
+		return Display{}, err
 	}
 
-	out, err := common.Cmd(string("vcgencmd"), []string{"display_power", state})
+	out, err := common.Cmd(string("vcgencmd"), []string{"display_power", suggestedState})
 	if err != nil{
-		return "", err
+		return Display{}, err
 	}
 
-	if !strings.Contains(out, "display_power="+state){
-		return "", fmt.Errorf(out)
+	if !strings.Contains(out, "display_power="+suggestedState){
+		return Display{}, fmt.Errorf(out)
 	}
 
-	return out, nil
+	state := Display{}
+	state.HdmiState = common.StrToInt(strings.Split(out,"=")[1])
+
+	return state, nil
 }
 
-func GetHdmiPower()(state string, error error){
+func GetHdmiState()(displayState Display, error error){
 	out, err := common.Cmd(string("vcgencmd"), []string{"display_power"})
 	if err != nil{
-		return "", err
+		return Display{}, err
 	}
 
-	return strings.Split(out, "=")[1], nil
+	state := Display{}
+	state.HdmiState = common.StrToInt(strings.Split(out,"=")[1])
+
+	return state, nil
 }
 
 func validateDisplayAction(state string)(action string, err error){
