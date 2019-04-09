@@ -14,7 +14,7 @@ func gpioToggle (w http.ResponseWriter, r *http.Request) {
 	pin := common.StrToInt(vars["number"])
 
 	if !config.ApiConfig.EndpointGpio{
-		returnErr(w,r,http.StatusBadRequest)
+		returnErr(w,r,http.StatusNotFound)
 		return
 	}
 
@@ -39,7 +39,7 @@ func gpioPullDown (w http.ResponseWriter, r *http.Request) {
 
 
 	if !config.ApiConfig.EndpointGpio{
-		returnErr(w,r,http.StatusBadRequest)
+		returnErr(w,r,http.StatusNotFound)
 		return
 	}
 
@@ -64,7 +64,7 @@ func gpioPullUp (w http.ResponseWriter, r *http.Request) {
 
 
 	if !config.ApiConfig.EndpointGpio{
-		returnErr(w,r,http.StatusBadRequest)
+		returnErr(w,r,http.StatusNotFound)
 		return
 	}
 
@@ -90,7 +90,7 @@ func gpioDepress (w http.ResponseWriter, r *http.Request) {
 	toggleTimes := 2
 
 	if !config.ApiConfig.EndpointGpio{
-		returnErr(w,r,http.StatusBadRequest)
+		returnErr(w,r,http.StatusNotFound)
 		return
 	}
 

@@ -9,23 +9,27 @@ import (
 
 //not to self - syscall reboot magic numbers reference: https://golang.org/pkg/syscall/?GOOS=linux&GOARCH=mips64le
 
-func SystemPower(action string)(err error){
+func SystemPower(action string)(actionResp Power, error error){
 	if err := validatePowerAction(action); err != nil{
-		return err
+		return Power{},err
 	}
+	status := Power{}
 
 	switch action{
 	case "reboot":
 		go reboot()
-		return nil
+		status.Status = fmt.Sprintf("async %s in progress...", action)
+		return status, nil
 
 	case "shutdown":
 		go shutdown()
-		return nil
+		status.Status = fmt.Sprintf("async %s in progress...", action)
+		return status, nil
 
 	default:
-		return fmt.Errorf("power action is invalid")
+		return Power{}, fmt.Errorf("power action %s is invalid", action)
 	}
+
 }
 
 func validatePowerAction(action string) error{
@@ -43,7 +47,7 @@ func validatePowerAction(action string) error{
 
 func reboot(){
 	//best effort no return in goroutine
-	time.Sleep(time.Second * 10)
+	time.Sleep(time.Second * 2)
 
 	var linuxRebootMagic1 uintptr = 0xfee1dead
 	var linuxRebootMagic2 uintptr = 672274793
@@ -57,7 +61,7 @@ func reboot(){
 
 func shutdown(){
 	//best effort no return in goroutine
-	time.Sleep(time.Second * 10)
+	time.Sleep(time.Second * 2)
 
 	var linuxRebootMagic1 uintptr = 0xfee1dead
 	var linuxRebootMagic2 uintptr = 672274793

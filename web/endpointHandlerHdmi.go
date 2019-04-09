@@ -7,9 +7,6 @@ import (
 	"net/http"
 )
 func displayGet (w http.ResponseWriter, r *http.Request) {
-	resp := Response{}
-	resp.Namespace = string(r.URL.Path)
-
 	state, err := actions.GetHdmiState()
 	if err != nil{
 		returnErr(w,r, http.StatusInternalServerError)
@@ -24,11 +21,8 @@ func displayAction (w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	action := vars["action"]
 
-	resp := Response{}
-	resp.Namespace = string(r.URL.Path)
-
 	if !config.ApiConfig.EndpointDisplay{
-		returnErr(w,r,http.StatusBadRequest)
+		returnErr(w,r,http.StatusNotFound)
 		return
 	}
 

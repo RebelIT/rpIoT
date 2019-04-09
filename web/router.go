@@ -56,8 +56,7 @@ func AuthMiddleware(next http.Handler) http.Handler {
 				// Pass down the request to the next handler
 				next.ServeHTTP(w, r)
 			} else{
-				resp := Response{}
-				resp.Namespace = string(r.URL.Path)
+				resp := Auth{}
 				returnUnauthorized(w, r, resp, fmt.Errorf("nope... unauthorized :("))
 			}
 		}

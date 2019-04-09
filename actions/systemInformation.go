@@ -8,7 +8,18 @@ import (
 	"strconv"
 )
 
-func GetHostStats()(info HostInfo){
+func GetSystemInfo()(sysInfo Sysinfo, error error){
+	resp := Sysinfo{}
+
+	resp.Host = getHostStats()
+	resp.Cpu = getCpuStats()
+	resp.Mem = getMemStats()
+	resp.Disk = getDiskStats()
+
+	return resp, nil
+}
+
+func getHostStats()(info HostInfo){
 	d := HostInfo{}
 
 	h, err := host.Info()
@@ -28,7 +39,7 @@ func GetHostStats()(info HostInfo){
 	return d
 }
 
-func GetCpuStats()(info CpuInfo){
+func getCpuStats()(info CpuInfo){
 	d := CpuInfo{}
 	dd := []CpuStat{}
 
@@ -41,10 +52,9 @@ func GetCpuStats()(info CpuInfo){
 		s := CpuStat{}
 
 		s.CpuNum = i
-		s.UtilPercent = c[i].Mhz
 		s.ModelName = c[i].ModelName
 		s.Cores = c[i].Cores
-		s.Mhz = s.Mhz
+		s.Mhz = c[i].Mhz
 
 		dd = append(dd, s)
 	}
@@ -54,7 +64,7 @@ func GetCpuStats()(info CpuInfo){
 	return d
 }
 
-func GetMemStats()(info MemInfo){
+func getMemStats()(info MemInfo){
 	d := MemInfo{}
 
 	m, err := mem.VirtualMemory()
@@ -68,7 +78,7 @@ func GetMemStats()(info MemInfo){
 	return d
 }
 
-func GetDiskStats()(info DiskInfo){
+func getDiskStats()(info DiskInfo){
 	d := DiskInfo{}
 
 	m, err := disk.Usage("/")
