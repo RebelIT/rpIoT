@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     
+    
+
+
     <head>
     <link href="https://gmpg.org/xfn/11" rel="profile">
     <meta charset="utf-8">
@@ -14,17 +17,21 @@
     
     
 
-<title>Categories • rpIoT</title>
+<title>Display Control • rpIoT</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Categories"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Display Control"/>
+<meta name="twitter:description" content=" Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  URI Methods  GET /api/display - returns power state of the HDMI out
+ hdmi_state = 0 Off|1 On   GET http://0.0.0.0:6661/api/display response: { &quot;hdmi_state&quot;: 1 }   POST /api/display/{action} - initiates a HDMI power state control
+ {action} = on|off   POST http://0.0.0.0:6661/api/display/off response: { &quot;hdmi_state&quot;: 0 }    "/>
 
-<meta property="og:title" content="Categories" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://rebelit.github.io/rpIoT/categories/" />
+<meta property="og:title" content="Display Control" />
+<meta property="og:description" content=" Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  URI Methods  GET /api/display - returns power state of the HDMI out
+ hdmi_state = 0 Off|1 On   GET http://0.0.0.0:6661/api/display response: { &quot;hdmi_state&quot;: 1 }   POST /api/display/{action} - initiates a HDMI power state control
+ {action} = on|off   POST http://0.0.0.0:6661/api/display/off response: { &quot;hdmi_state&quot;: 0 }    " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rebelit.github.io/rpIoT/usage/p4_hdmiendpoints/" />
 <meta property="og:site_name" content="rpIoT API Documentation" />
 
 
@@ -56,10 +63,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
     
-
-<link href="https://rebelit.github.io/rpIoT/categories/index.xml" rel="alternate" type="application/rss+xml" title="rpIoT" />
-<link href="https://rebelit.github.io/rpIoT/categories/index.xml" rel="feed" type="application/rss+xml" title="rpIoT" />
-
 
 </head>
 
@@ -187,28 +190,120 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 
         <div class="content container">
             
-    <span class="section__title">Categories</span>
-<ul class="posts">
+    <article>
+  <header>
+    <h1>Display Control</h1>
     
-        
-<li>
-  <span class="list__title--small">
-    <a href="/rpIoT/categories/releasenotes/" >Releasenotes</a>
-      
-      <time class="pull-right hidden-tablet">Apr 12, 2019</time>
-      
-  </span>
-</li>
+    
+<div class="post__meta">
+    
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 1 min read
+</div>
 
 
+  </header>
+  
+  
+  <div class="post">
     
+
+<h2 id="headers">Headers</h2>
+
+<ul>
+<li><code>Content-Type:Application/json</code></li>
+<li><code>Accept:Application/json</code></li>
+<li>auth - see auth doco if auth is enabled</li>
 </ul>
+
+<h2 id="uri-methods">URI Methods</h2>
+
+<ul>
+<li><p>GET <code>/api/display</code> - <em>returns power state of the HDMI out</em></p>
+
+<ul>
+<li>hdmi_state = 0 Off|1 On</li>
+</ul>
+
+<pre><code>  GET http://0.0.0.0:6661/api/display
+  response:
+  {
+      &quot;hdmi_state&quot;: 1
+  }
+</code></pre>
+
+<hr /></li>
+
+<li><p>POST <code>/api/display/{action}</code> - <em>initiates a HDMI power state control</em></p>
+
+<ul>
+<li>{action} = on|off</li>
+</ul>
+
+<pre><code>  POST http://0.0.0.0:6661/api/display/off
+  response:
+  {
+      &quot;hdmi_state&quot;: 0
+  }
+</code></pre>
+
+<hr /></li>
+</ul>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/rpIoT/usage/p3_gpioendpoints/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">GPIO Pin Control</span>
+    </a>
+    
+    
+    <a href="/rpIoT/usage/p1_authentication/" class="navigation-next">
+      <span class="navigation-tittle">Authentication and Security</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
 
 
         </div>
         
     
 <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
 
 
 

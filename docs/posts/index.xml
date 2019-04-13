@@ -6,10 +6,19 @@
     <description>Recent content in Posts on rpIoT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 04 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rebelit.github.io/rpIoT/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>v2.0.0  - Major changes</title>
+      <link>https://rebelit.github.io/rpIoT/posts/v2.0.0/</link>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://rebelit.github.io/rpIoT/posts/v2.0.0/</guid>
+      <description> v2.0.0  Enhancement: All GETs are enabled, POST, PUT, DELETE per endpoint can be toggled in config Enhancement: Added more GETs  new get all gpio pins states endpoint new get single gpio pin state endpoint new get service status endpoint  Enhancement: added shutdown action to power endpoint  POST /api/power/shutdown  Fix: system stats return  system info return proper json key name and CPU Mhz reading  Documentation:  Added tons to to this git pages how to&amp;rsquo;s and endpoints  Simplify code:  removed generic http responses to be more customized per endpoint refactor gpio handlers &amp;amp; actions to use new customized returns refactor hdmi handlers &amp;amp; actions to use new customized returns refactor System Information handlers &amp;amp; actions to use new customized returns refactor Apt Package Manager handlers &amp;amp; actions to use new customized returns refactor Power Control handlers &amp;amp; actions to use new customized returns refactor Service Control handlers &amp;amp; actions to use new customized returns  Issues Resolved in this version:  31 bad sys info return 30 shutdown endpoint 24 more gets 16 more doco   </description>
+    </item>
     
     <item>
       <title>v1.0.1  - Enhancement</title>

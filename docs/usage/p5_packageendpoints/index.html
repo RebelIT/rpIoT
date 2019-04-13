@@ -17,17 +17,21 @@
     
     
 
-<title>About Me • rpIoT</title>
+<title>Package Manager • rpIoT</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="About Me"/>
-<meta name="twitter:description" content="not sure yet what to tell you about me jsut yet&hellip;"/>
+<meta name="twitter:title" content="Package Manager"/>
+<meta name="twitter:description" content="Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  URI Methods  GET /api/apt - returns package install history
+ GET http://0.0.0.0:6661/api/apt response: { &quot;log&quot;: [ &quot;&quot;, &quot;Start-Date: 2019-04-05 23:00:42&quot;, &quot;Commandline: apt-get install jq&quot;, &quot;Requested-By: pi (1000)&quot;, &quot;Install: jq:armhf (1.5&#43;dfsg-1.3), libjq1:armhf (1.5&#43;dfsg-1.3, automatic), libonig4:armhf (6.1.3-2, automatic)&quot;, &quot;End-Date: 2019-04-05 23:00:51&quot;, &quot;&quot; ] }   POST /api/apt/{action} - performs a system apt action
+ {action} = update|upgrade  POST http://0."/>
 
-<meta property="og:title" content="About Me" />
-<meta property="og:description" content="not sure yet what to tell you about me jsut yet&hellip;" />
+<meta property="og:title" content="Package Manager" />
+<meta property="og:description" content="Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  URI Methods  GET /api/apt - returns package install history
+ GET http://0.0.0.0:6661/api/apt response: { &quot;log&quot;: [ &quot;&quot;, &quot;Start-Date: 2019-04-05 23:00:42&quot;, &quot;Commandline: apt-get install jq&quot;, &quot;Requested-By: pi (1000)&quot;, &quot;Install: jq:armhf (1.5&#43;dfsg-1.3), libjq1:armhf (1.5&#43;dfsg-1.3, automatic), libonig4:armhf (6.1.3-2, automatic)&quot;, &quot;End-Date: 2019-04-05 23:00:51&quot;, &quot;&quot; ] }   POST /api/apt/{action} - performs a system apt action
+ {action} = update|upgrade  POST http://0." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rebelit.github.io/rpIoT/aboutme/" />
+<meta property="og:url" content="https://rebelit.github.io/rpIoT/usage/p5_packageendpoints/" />
 <meta property="og:site_name" content="rpIoT API Documentation" />
 
 
@@ -188,7 +192,7 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
             
     <article>
   <header>
-    <h1>About Me</h1>
+    <h1>Package Manager</h1>
     
     
 <div class="post__meta">
@@ -207,13 +211,82 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
   
   
   <div class="post">
-    <p>not sure yet what to tell you about me jsut yet&hellip;</p>
+    
+
+<h2 id="headers">Headers</h2>
+
+<ul>
+<li><code>Content-Type:Application/json</code></li>
+<li><code>Accept:Application/json</code></li>
+<li>auth - see auth doco if auth is enabled</li>
+</ul>
+
+<h2 id="uri-methods">URI Methods</h2>
+
+<ul>
+<li><p>GET <code>/api/apt</code> - <em>returns package install history</em></p>
+
+<pre><code>  GET http://0.0.0.0:6661/api/apt
+  response:
+  {
+      &quot;log&quot;: [
+          &quot;&quot;,
+          &quot;Start-Date: 2019-04-05  23:00:42&quot;,
+          &quot;Commandline: apt-get install jq&quot;,
+          &quot;Requested-By: pi (1000)&quot;,
+          &quot;Install: jq:armhf (1.5+dfsg-1.3), libjq1:armhf (1.5+dfsg-1.3, automatic), libonig4:armhf (6.1.3-2, automatic)&quot;,
+          &quot;End-Date: 2019-04-05  23:00:51&quot;,
+          &quot;&quot;
+      ]
+  }
+</code></pre>
+
+<hr /></li>
+
+<li><p>POST <code>/api/apt/{action}</code> - <em>performs a system apt action</em></p>
+
+<ul>
+<li>{action} = update|upgrade</li>
+</ul>
+
+<pre><code>POST http://0.0.0.0:6661/api/apt/update
+response:
+{
+  &quot;status&quot;: &quot;update async action in progress, GET - /api/apt for status&quot;
+}
+</code></pre>
+
+<hr /></li>
+
+<li><p>POST <code>/api/apt/{package}/{action}</code> - <em>initiates apt-get to install a package</em></p>
+
+<ul>
+<li>{package} = any package in APT Package Manager Repositories</li>
+</ul>
+
+<pre><code>POST http://0.0.0.0:6661/api/apt/jq/install
+Response:
+{
+    &quot;status&quot;: &quot;install jq async action in progress, GET - /api/apt for status&quot;
+}
+</code></pre></li>
+</ul>
 
   </div>
   
 
 <div class="navigation navigation-single">
     
+    <a href="/rpIoT/usage/p6_powerendpoints/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Power Control</span>
+    </a>
+    
+    
+    <a href="/rpIoT/usage/p3_gpioendpoints/" class="navigation-next">
+      <span class="navigation-tittle">GPIO Pin Control</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
     
 </div>
 

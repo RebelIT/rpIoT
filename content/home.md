@@ -25,9 +25,9 @@ rPI that is GPIO hard wired to something (garage door).
 My use case is a custom home automation platform ([gome](https://github.com/RebelIT/gome) (go + home)) that I decided to play around with while I learned a new language,  I fell into GOLang at work, and decided to put what I learned to use at home too and further my knowledge.
 
 
-I'm hoping others can find this useful and contribute as i start to formalize this
-project.  This Doco is a start :)
+I'm hoping others can find this useful and contribute.  
 
+I love home automation, building my own from scratch.  I like GO, I like RaspberryPi's.  Figured this would be fun and useful for me & possibly others.
 
 Happy automating!
 --RebelIT

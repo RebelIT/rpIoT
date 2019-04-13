@@ -11,24 +11,85 @@
     
     
     <item>
-      <title>Authentication and Security</title>
-      <link>https://rebelit.github.io/rpIoT/usage/authentication/</link>
+      <title>API Alive</title>
+      <link>https://rebelit.github.io/rpIoT/usage/p2_aliveendpoints/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://rebelit.github.io/rpIoT/usage/authentication/</guid>
+      <guid>https://rebelit.github.io/rpIoT/usage/p2_aliveendpoints/</guid>
+      <description> Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  URI Methods  GET /api/alive - http status health check endpoint
+ GET http://0.0.0.0:6661/api/alive response: { &amp;quot;status&amp;quot;: &amp;quot;im running fine...&amp;quot; }    </description>
+    </item>
+    
+    <item>
+      <title>Authentication and Security</title>
+      <link>https://rebelit.github.io/rpIoT/usage/p1_authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rebelit.github.io/rpIoT/usage/p1_authentication/</guid>
       <description>Authentication enabled usage If &amp;quot;auth_enabled&amp;quot;: true you must provide auth headers in each API call * Required headers for all API calls:
  X-API-User:&amp;lt;default_user config value&amp;gt; X-API-Token:&amp;lt;default_user_token config value&amp;gt;   Disabling auth &amp;quot;auth_enabled&amp;quot;: false makes your API wide open to anyone on your network.  SSL enabled usage If &amp;quot;ssl_enabled&amp;quot;: true you must place your cert and key in the install_dir directory. You can use any CA signed cert or a self signed one, as long as you have the key.</description>
     </item>
     
     <item>
-      <title>Using the Endpoints</title>
-      <link>https://rebelit.github.io/rpIoT/usage/usingtheendpoints/</link>
+      <title>Display Control</title>
+      <link>https://rebelit.github.io/rpIoT/usage/p4_hdmiendpoints/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://rebelit.github.io/rpIoT/usage/usingtheendpoints/</guid>
-      <description>Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  API endpoints  Base endpoints  GET /api/alive - return a json status if the API is alive GET /api/system - return a json status if the running system stats  Power Control endpoints
- POST /api/power/{acton} - return a json status if the API is alive
-actions: reboot - Reboots the Raspberry Pi shutdown - performs a graceful system shutdown   Package manager endpoints</description>
+      <guid>https://rebelit.github.io/rpIoT/usage/p4_hdmiendpoints/</guid>
+      <description> Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  URI Methods  GET /api/display - returns power state of the HDMI out
+ hdmi_state = 0 Off|1 On   GET http://0.0.0.0:6661/api/display response: { &amp;quot;hdmi_state&amp;quot;: 1 }   POST /api/display/{action} - initiates a HDMI power state control
+ {action} = on|off   POST http://0.0.0.0:6661/api/display/off response: { &amp;quot;hdmi_state&amp;quot;: 0 }    </description>
+    </item>
+    
+    <item>
+      <title>GPIO Pin Control</title>
+      <link>https://rebelit.github.io/rpIoT/usage/p3_gpioendpoints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rebelit.github.io/rpIoT/usage/p3_gpioendpoints/</guid>
+      <description>Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  GPIO Guide Rev 2 and 3 Raspberry Pi Rev 1 Raspberry Pi (legacy) +-----+---------+----------+---------+-----+ +-----+--------+----------+--------+-----+ | BCM | Name | Physical | Name | BCM | | BCM | Name | Physical | Name | BCM | +-----+---------+----++----+---------+-----+ +-----+--------+----++----+--------+-----+ | | 3.3v | 1 || 2 | 5v | | | | 3.3v | 1 || 2 | 5v | | | 2 | SDA 1 | 3 || 4 | 5v | | | 0 | SDA | 3 || 4 | 5v | | | 3 | SCL 1 | 5 || 6 | 0v | | | 1 | SCL | 5 || 6 | 0v | | | 4 | GPIO 7 | 7 || 8 | TxD | 14 | | 4 | GPIO 7 | 7 || 8 | TxD | 14 | | | 0v | 9 || 10 | RxD | 15 | | | 0v | 9 || 10 | RxD | 15 | | 17 | GPIO 0 | 11 || 12 | GPIO 1 | 18 | | 17 | GPIO 0 | 11 || 12 | GPIO 1 | 18 | | 27 | GPIO 2 | 13 || 14 | 0v | | | 21 | GPIO 2 | 13 || 14 | 0v | | | 22 | GPIO 3 | 15 || 16 | GPIO 4 | 23 | | 22 | GPIO 3 | 15 || 16 | GPIO 4 | 23 | | | 3.</description>
+    </item>
+    
+    <item>
+      <title>Package Manager</title>
+      <link>https://rebelit.github.io/rpIoT/usage/p5_packageendpoints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rebelit.github.io/rpIoT/usage/p5_packageendpoints/</guid>
+      <description>Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  URI Methods  GET /api/apt - returns package install history
+ GET http://0.0.0.0:6661/api/apt response: { &amp;quot;log&amp;quot;: [ &amp;quot;&amp;quot;, &amp;quot;Start-Date: 2019-04-05 23:00:42&amp;quot;, &amp;quot;Commandline: apt-get install jq&amp;quot;, &amp;quot;Requested-By: pi (1000)&amp;quot;, &amp;quot;Install: jq:armhf (1.5+dfsg-1.3), libjq1:armhf (1.5+dfsg-1.3, automatic), libonig4:armhf (6.1.3-2, automatic)&amp;quot;, &amp;quot;End-Date: 2019-04-05 23:00:51&amp;quot;, &amp;quot;&amp;quot; ] }   POST /api/apt/{action} - performs a system apt action
+ {action} = update|upgrade  POST http://0.</description>
+    </item>
+    
+    <item>
+      <title>Power Control</title>
+      <link>https://rebelit.github.io/rpIoT/usage/p6_powerendpoints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rebelit.github.io/rpIoT/usage/p6_powerendpoints/</guid>
+      <description> Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  URI Methods  POST /api/power/{acton} - initiates a system power control
+ {action} = reboot|shutdown   POST http://0.0.0.0:6661/api/power/reboot response: { &amp;quot;status&amp;quot;: &amp;quot;async reboot in progress...&amp;quot; }    </description>
+    </item>
+    
+    <item>
+      <title>Service Control</title>
+      <link>https://rebelit.github.io/rpIoT/usage/p7_serviceendpoints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rebelit.github.io/rpIoT/usage/p7_serviceendpoints/</guid>
+      <description> Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  URI Methods  GET /api/service/{service} - returns status of a systemd service
+ GET http://0.0.0.0:6661/api/service/web-api response: { &amp;quot;status&amp;quot;: &amp;quot;active&amp;quot; }   POST /api/service/{service}/{action} - initiates a systemd service control
+ {action} = start|stop|restart    POST http://0.0.0.0:6661/api/service/redis/stop response: { &amp;quot;status&amp;quot;: &amp;quot;success&amp;quot; }    </description>
+    </item>
+    
+    <item>
+      <title>System Information</title>
+      <link>https://rebelit.github.io/rpIoT/usage/p8_systeminfoendpoints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rebelit.github.io/rpIoT/usage/p8_systeminfoendpoints/</guid>
+      <description> Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  URI Methods  GET /api/system - returns system information
+GET http://0.0.0.0:6661/api/system response: { &amp;quot;host&amp;quot;: { &amp;quot;uptime&amp;quot;: &amp;quot;5316&amp;quot;, &amp;quot;kernel_version&amp;quot;: &amp;quot;4.14.79-v7+&amp;quot;, &amp;quot;platform&amp;quot;: &amp;quot;raspbian&amp;quot;, &amp;quot;platform_ver&amp;quot;: &amp;quot;9.6&amp;quot;, &amp;quot;boottime&amp;quot;: &amp;quot;1554780785&amp;quot;, &amp;quot;hostname&amp;quot;: &amp;quot;piDev&amp;quot;, &amp;quot;host_id&amp;quot;: &amp;quot;a336c86e-879f-442d-bf62-00d9f8102c79&amp;quot; }, &amp;quot;cpu&amp;quot;: { &amp;quot;cpu_stats&amp;quot;: [ { &amp;quot;cpu_num&amp;quot;: 0, &amp;quot;mhz&amp;quot;: 1500, &amp;quot;model_name&amp;quot;: &amp;quot;ARMv7 Processor rev 4 (v7l)&amp;quot;, &amp;quot;cores&amp;quot;: 1 }, { &amp;quot;cpu_num&amp;quot;: 1, &amp;quot;mhz&amp;quot;: 1500, &amp;quot;model_name&amp;quot;: &amp;quot;ARMv7 Processor rev 4 (v7l)&amp;quot;, &amp;quot;cores&amp;quot;: 1 }, { &amp;quot;cpu_num&amp;quot;: 2, &amp;quot;mhz&amp;quot;: 1500, &amp;quot;model_name&amp;quot;: &amp;quot;ARMv7 Processor rev 4 (v7l)&amp;quot;, &amp;quot;cores&amp;quot;: 1 }, { &amp;quot;cpu_num&amp;quot;: 3, &amp;quot;mhz&amp;quot;: 1500, &amp;quot;model_name&amp;quot;: &amp;quot;ARMv7 Processor rev 4 (v7l)&amp;quot;, &amp;quot;cores&amp;quot;: 1 } ] }, &amp;quot;mem&amp;quot;: { &amp;quot;total&amp;quot;: &amp;quot;984707072&amp;quot;, &amp;quot;free&amp;quot;: &amp;quot;804564992&amp;quot; }, &amp;quot;disk&amp;quot;: { &amp;quot;total&amp;quot;: 15606296576, &amp;quot;used&amp;quot;: 2544054272, &amp;quot;free&amp;quot;: 12395008000 } }    </description>
     </item>
     
   </channel>

@@ -1,5 +1,6 @@
 ## Basic Configuration
 baseurl = "https://rebelit.github.io/rpIoT/"
+homepage = "https://rebelit.github.io/rpIoT/home"
 languageCode = "en"
 publishDir = "docs"
 
@@ -22,16 +23,13 @@ theme = "hyde-hyde"
     # description = "..."
     # authorimage = "/img/hugo.png"
     dateformat = "Jan 2, 2006"
+    highlightjs = true
+    highlightjsstyle = "github"
 
     # sidebar, copyright & license
-    copyright = "htr3n"
     license = "CC BY-SA 4.0"
     licenseURL = "https://creativecommons.org/licenses/by-sa/4.0"
     showBuiltWith = true
-
-    # https://highlightjs.org
-    highlightjs = true
-    highlightjsstyle = "github"
 
     # please choose either GraphComment or Disqus or Utterances
     #GraphCommentId = "..."
@@ -62,32 +60,37 @@ theme = "hyde-hyde"
     identifier = "home"
     url = "/home/"
 [[menu.main]]
-    name = "API Configuration"
+    name = "Release Notes"
+    identifier = "posts"
     weight = 200
+    url = "/posts/"
+[[menu.main]]
+    name = "API Configuration"
+    weight = 300
     identifier = "configuration"
     url = "/configuration/"
 [[menu.main]]
     name = "Installation"
     identifier = "installation"
-    weight = 300
+    weight = 400
     url = "/installation/"
 [[menu.main]]
     name = "Using the API"
     identifier = "usage"
-    weight = 400
+    weight = 500
     url = "/usage/"
 [[menu.main]]
     name = "Add-ons"
     identifier = "addons"
-    weight = 500
+    weight = 600
     url = "/addons/"
+[[menu.main]]
+    name = "Projects Using rpIoT"
+    identifier = "projects"
+    weight = 600
+    url = "/projects/"
 [[menu.main]]
     name = "About Me"
     identifier = "aboutme"
-    weight = 600
+    weight = 800
     url = "/aboutme/"
-[[menu.main]]
-    name = "Release Notes"
-    identifier = "posts"
-    weight = 700
-    url = "/posts/"

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     
+    
+
+
     <head>
     <link href="https://gmpg.org/xfn/11" rel="profile">
     <meta charset="utf-8">
@@ -14,17 +17,19 @@
     
     
 
-<title>Categories • rpIoT</title>
+<title>Authentication and Security • rpIoT</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Categories"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Authentication and Security"/>
+<meta name="twitter:description" content="Authentication enabled usage If &quot;auth_enabled&quot;: true you must provide auth headers in each API call * Required headers for all API calls:
+ X-API-User:&lt;default_user config value&gt; X-API-Token:&lt;default_user_token config value&gt;   Disabling auth &quot;auth_enabled&quot;: false makes your API wide open to anyone on your network.  SSL enabled usage If &quot;ssl_enabled&quot;: true you must place your cert and key in the install_dir directory. You can use any CA signed cert or a self signed one, as long as you have the key."/>
 
-<meta property="og:title" content="Categories" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://rebelit.github.io/rpIoT/categories/" />
+<meta property="og:title" content="Authentication and Security" />
+<meta property="og:description" content="Authentication enabled usage If &quot;auth_enabled&quot;: true you must provide auth headers in each API call * Required headers for all API calls:
+ X-API-User:&lt;default_user config value&gt; X-API-Token:&lt;default_user_token config value&gt;   Disabling auth &quot;auth_enabled&quot;: false makes your API wide open to anyone on your network.  SSL enabled usage If &quot;ssl_enabled&quot;: true you must place your cert and key in the install_dir directory. You can use any CA signed cert or a self signed one, as long as you have the key." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rebelit.github.io/rpIoT/usage/p1_authentication/" />
 <meta property="og:site_name" content="rpIoT API Documentation" />
 
 
@@ -56,10 +61,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="/favicon.png">
     
-
-<link href="https://rebelit.github.io/rpIoT/categories/index.xml" rel="alternate" type="application/rss+xml" title="rpIoT" />
-<link href="https://rebelit.github.io/rpIoT/categories/index.xml" rel="feed" type="application/rss+xml" title="rpIoT" />
-
 
 </head>
 
@@ -187,28 +188,96 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 
         <div class="content container">
             
-    <span class="section__title">Categories</span>
-<ul class="posts">
+    <article>
+  <header>
+    <h1>Authentication and Security</h1>
     
-        
-<li>
-  <span class="list__title--small">
-    <a href="/rpIoT/categories/releasenotes/" >Releasenotes</a>
-      
-      <time class="pull-right hidden-tablet">Apr 12, 2019</time>
-      
-  </span>
-</li>
+    
+<div class="post__meta">
+    
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 1 min read
+</div>
 
 
+  </header>
+  
+  
+  <div class="post">
     
+
+<h2 id="authentication-enabled-usage">Authentication enabled usage</h2>
+
+<p>If <code>&quot;auth_enabled&quot;: true</code> you must provide auth headers in each API call
+* Required headers for all API calls:</p>
+
+<pre><code>  X-API-User:&lt;default_user config value&gt;
+  X-API-Token:&lt;default_user_token config value&gt;
+</code></pre>
+
+<ul>
+<li>Disabling auth <code>&quot;auth_enabled&quot;: false</code> makes your API wide open to anyone on your
+network.</li>
 </ul>
+
+<h2 id="ssl-enabled-usage">SSL enabled usage</h2>
+
+<p>If <code>&quot;ssl_enabled&quot;: true</code> you must place your cert and key in the <code>install_dir</code> directory.  You can use any CA signed cert or a self signed one, as long as you have the key.</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/rpIoT/usage/p4_hdmiendpoints/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Display Control</span>
+    </a>
+    
+    
+    <a href="/rpIoT/usage/p2_aliveendpoints/" class="navigation-next">
+      <span class="navigation-tittle">API Alive</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
 
 
         </div>
         
     
 <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
 
 
 
