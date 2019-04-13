@@ -14,8 +14,10 @@ type Route struct {
 }
 
 //API response
-type Response struct{
-	Namespace	string		`json:"namespace"`
+type Alive struct{
+	Status	string		`json:"status"`
+}
+
+type Auth struct{
 	Message		string		`json:"message"`
-	Data		[]string 	`json:"data"`
 }

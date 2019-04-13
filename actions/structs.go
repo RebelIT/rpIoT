@@ -1,9 +1,12 @@
 package actions
 
+import "github.com/stianeikeland/go-rpio"
+
+//-->System Information
 type Sysinfo struct{
 	Host 	HostInfo `json:"host"`
 	Cpu 	CpuInfo `json:"cpu"`
-	Mem 	MemInfo `json:"net"`
+	Mem 	MemInfo `json:"mem"`
 	Disk	DiskInfo `json:"disk"`
 }
 
@@ -26,7 +29,6 @@ type CpuStat struct{
 	Mhz				float64 `json:"mhz"`
 	ModelName		string `json:"model_name"`
 	Cores			int32 `json:"cores"`
-	UtilPercent 	float64 `json:"util_percent"`
 }
 
 type MemInfo struct{
@@ -39,3 +41,43 @@ type DiskInfo struct{
 	Used 	uint64 `json:"used"`
 	Free	uint64 `json:"free"`
 }
+//<--System Information
+
+//-->GPIO pin
+type GpioStates struct {
+	Pins	[]Pin `json:"pins"`
+}
+
+type Pin struct{
+	BcmPin	int `json:"bcm_pin"`
+	State 	rpio.State `json:"state"`
+}
+//<--GPIO pin
+
+//-->HDMI display
+type Display struct{
+	HdmiState	int `json:"hdmi_state"`
+}
+//<--HDMI display
+
+//-->APT
+type AptLog struct{
+	Log		[]string `json:"log"`
+}
+
+type AptInstallUpdate struct{
+	Status	string `json:"status"`
+}
+//<--APT
+
+//-->Power
+type Power struct{
+	Status	string `json:"status"`
+}
+//<--Power
+
+//-->Service
+type Service struct{
+	Status	string `json:"status"`
+}
+//<--Service

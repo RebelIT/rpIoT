@@ -7,43 +7,48 @@ import (
 	"strings"
 )
 
-func Update(action string)(cmdResp string, err error){
+func Update(action string)(status AptInstallUpdate, err error){
 	if err := validateUpdateAction(action); err != nil{
-		return "", err
+		return AptInstallUpdate{}, err
 	}
 
 	go common.Cmd("apt-get", []string{action, "-y"})
-	out := fmt.Sprintf("%s initiated", action)
+	out := AptInstallUpdate{}
+	out.Status = fmt.Sprintf("%s async action in progress, GET - /api/apt for status", action)
 
 	return out, nil
 }
 
-func Install(action string, pkg string)(cmdResp string, err error){
+func Install(action string, pkg string)(status AptInstallUpdate, err error){
 	if err := validateInstallAction(action); err != nil{
-		return "", err
+		return AptInstallUpdate{}, err
 	}
 
 	go common.Cmd("apt-get", []string{action ,pkg ,"-y"})
-	out := fmt.Sprintf("%s initiated", action)
+	out := AptInstallUpdate{}
+	out.Status = fmt.Sprintf("%s %s async action in progress, GET - /api/apt for status", action, pkg)
 
 	return out, nil
 }
 
-func CheckUpdateLog()(log []string, error error){
-	logData := []string{}
+func CheckUpdateLog()(log AptLog, error error){
+	aptLog := AptLog{}
+	aptLogdata := AptLog{}.Log
 
 	data, err := ioutil.ReadFile(common.UPDATE_LOG_DIR)
 	if err != nil{
-		return nil, err
+		return AptLog{}, err
 	}
 
 	temp := strings.Split(string(data), "\n")
 
 	for _, line := range temp{
-		logData = append(logData, line)
+		aptLogdata = append(aptLogdata, line)
 	}
 
-	return logData, nil
+	aptLog.Log = aptLogdata
+
+	return aptLog, nil
 }
 
 func validateUpdateAction(action string) error{

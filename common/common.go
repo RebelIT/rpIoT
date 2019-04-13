@@ -73,7 +73,6 @@ func Cmd(cmdName string, args []string) (cmdOut string, err error) {
 	if err != nil {
 		return string(out), err
 	}
-
 	fmtOut := strings.Replace(string(out), "\n", "", -1)
 
 	return fmtOut,nil
@@ -94,6 +93,11 @@ func StrToUint8(number string)(uint8, error){
 	}
 	uInt := uint8(rawInt) //convert the int to uint8
 	return uInt, nil
+}
+
+func StrToInt(str string)(number int){
+	p, _ := strconv.Atoi(str)
+	return p
 }
 
 func GetHostname()(hostname string){

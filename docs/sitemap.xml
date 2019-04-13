@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://rebelit.github.io/rpIoT/posts/v2.0.0/</loc>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://rebelit.github.io/rpIoT/posts/v1.0.1/</loc>
     <lastmod>2019-04-04T00:00:00+00:00</lastmod>
   </url>
@@ -13,11 +18,15 @@
   </url>
   
   <url>
+    <loc>https://rebelit.github.io/rpIoT/usage/p2_aliveendpoints/</loc>
+  </url>
+  
+  <url>
     <loc>https://rebelit.github.io/rpIoT/aboutme/</loc>
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/usage/authentication/</loc>
+    <loc>https://rebelit.github.io/rpIoT/usage/p1_authentication/</loc>
   </url>
   
   <url>
@@ -30,6 +39,14 @@
   </url>
   
   <url>
+    <loc>https://rebelit.github.io/rpIoT/usage/p4_hdmiendpoints/</loc>
+  </url>
+  
+  <url>
+    <loc>https://rebelit.github.io/rpIoT/usage/p3_gpioendpoints/</loc>
+  </url>
+  
+  <url>
     <loc>https://rebelit.github.io/rpIoT/installation/</loc>
   </url>
   
@@ -38,9 +55,21 @@
   </url>
   
   <url>
+    <loc>https://rebelit.github.io/rpIoT/projects/</loc>
+  </url>
+  
+  <url>
+    <loc>https://rebelit.github.io/rpIoT/usage/p5_packageendpoints/</loc>
+  </url>
+  
+  <url>
     <loc>https://rebelit.github.io/rpIoT/posts/</loc>
-    <lastmod>2019-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://rebelit.github.io/rpIoT/usage/p6_powerendpoints/</loc>
   </url>
   
   <url>
@@ -49,19 +78,27 @@
   
   <url>
     <loc>https://rebelit.github.io/rpIoT/categories/releasenotes/</loc>
-    <lastmod>2019-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://rebelit.github.io/rpIoT/tags/rpiot/</loc>
-    <lastmod>2019-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://rebelit.github.io/rpIoT/usage/p7_serviceendpoints/</loc>
+  </url>
+  
+  <url>
+    <loc>https://rebelit.github.io/rpIoT/usage/p8_systeminfoendpoints/</loc>
+  </url>
+  
+  <url>
     <loc>https://rebelit.github.io/rpIoT/tags/</loc>
-    <lastmod>2019-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -71,18 +108,14 @@
   </url>
   
   <url>
-    <loc>https://rebelit.github.io/rpIoT/usage/usingtheendpoints/</loc>
-  </url>
-  
-  <url>
     <loc>https://rebelit.github.io/rpIoT/tags/version/</loc>
-    <lastmod>2019-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://rebelit.github.io/rpIoT/</loc>
-    <lastmod>2019-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

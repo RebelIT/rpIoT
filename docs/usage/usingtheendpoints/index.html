@@ -24,12 +24,12 @@
 <meta name="twitter:title" content="Using the Endpoints"/>
 <meta name="twitter:description" content="Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  API endpoints  Base endpoints  GET /api/alive - return a json status if the API is alive GET /api/system - return a json status if the running system stats  Power Control endpoints
  POST /api/power/{acton} - return a json status if the API is alive
-actions: reboot - Reboots the Raspberry Pi   Power Control endpoints"/>
+actions: reboot - Reboots the Raspberry Pi shutdown - performs a graceful system shutdown   Package manager endpoints"/>
 
 <meta property="og:title" content="Using the Endpoints" />
 <meta property="og:description" content="Headers  Content-Type:Application/json Accept:Application/json auth - see auth doco if auth is enabled  API endpoints  Base endpoints  GET /api/alive - return a json status if the API is alive GET /api/system - return a json status if the running system stats  Power Control endpoints
  POST /api/power/{acton} - return a json status if the API is alive
-actions: reboot - Reboots the Raspberry Pi   Power Control endpoints" />
+actions: reboot - Reboots the Raspberry Pi shutdown - performs a graceful system shutdown   Package manager endpoints" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rebelit.github.io/rpIoT/usage/usingtheendpoints/" />
 <meta property="og:site_name" content="rpIoT API Documentation" />
@@ -202,7 +202,7 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
     
     
     <br/>
-    <i class="fas fa-clock"></i> 2 min read
+    <i class="fas fa-clock"></i> 3 min read
 </div>
 
 
@@ -237,10 +237,11 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 
 <pre><code>actions:
 reboot - Reboots the Raspberry Pi
+shutdown - performs a graceful system shutdown
 </code></pre></li>
 </ul></li>
 
-<li><p><strong>Power Control endpoints</strong></p>
+<li><p><strong>Package manager endpoints</strong></p>
 
 <ul>
 <li>GET <code>/api/apt</code> - <em>return a json response of the var/log/apt/history.log</em></li>
@@ -265,6 +266,12 @@ remove - performs an apt-get remove {package}
 <li><p><strong>Service Control endpoints</strong></p>
 
 <ul>
+<li><p>GET <code>/api/service/{service}</code> - <em>returns the status of a service (active/inactive)</em></p>
+
+<pre><code>service:
+any installed systemd service name
+</code></pre></li>
+
 <li><p>POST <code>/api/service/{service}/{action}</code> - <em>return a json response of the var/log/apt/history.log</em></p>
 
 <pre><code>service:
@@ -292,9 +299,26 @@ off - turns off hdmi power
 <li><p><strong>GPOI Pin Control endpoints</strong></p>
 
 <ul>
-<li>POST <code>/api/gpio/{number}/pullup</code> - <em>performs a pin# pullup</em></li>
-<li>POST <code>/api/gpio/{number}/pulldown</code> - <em>performs a pin# pulldown</em></li>
-<li>POST <code>/api/gpio/{number}/toggle</code> - <em>performs a pin# toggle</em></li>
+<li><p>GET <code>/api/gpio</code> - <em>gets the state of each GPIO pin</em></p>
+
+<pre><code>{
+    &quot;pins&quot;: [
+        {
+            &quot;pin_num&quot;: &quot;2&quot;,
+            &quot;state&quot;: 0
+        },
+        {
+            &quot;pin_num&quot;: &quot;3&quot;,
+            &quot;state&quot;: 1
+        },
+        ...       
+</code></pre></li>
+
+<li><p>POST <code>/api/gpio/{number}/pullup</code> - <em>performs a pin# pullup</em></p></li>
+
+<li><p>POST <code>/api/gpio/{number}/pulldown</code> - <em>performs a pin# pulldown</em></p></li>
+
+<li><p>POST <code>/api/gpio/{number}/toggle</code> - <em>performs a pin# toggle</em></p></li>
 
 <li><p>POST <code>/api/gpio/{number}/depress/{milliseconds}</code> - <em>simulates a button press (toggle x2 for n milliseconds)</em></p>
 
