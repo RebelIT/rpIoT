@@ -27,7 +27,7 @@ func SendMetric(uri string, responseCode int, method string ){
 		return
 	}
 
-	tags := statsd.Tags("uri_path", uri, "response_code", strconv.Itoa(responseCode), "method", method)
+	tags := statsd.Tags("uri_path", uri, "response_code", strconv.Itoa(responseCode), "method", method, "app", "rpiot")
 	addrOpt := statsd.Address(config.ApiConfig.StatsdHost)
 	fmtOpt := statsd.TagsFormat(statsd.InfluxDB)
 	client, err := statsd.New(addrOpt,fmtOpt,tags)
